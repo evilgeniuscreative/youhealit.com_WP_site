@@ -1,0 +1,10 @@
+[07-Aug-2025 14:59:28 America/Boise] PHP Warning:  Constant WP_DEBUG already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 94
+[07-Aug-2025 14:59:28 America/Boise] PHP Warning:  Constant WP_DEBUG already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 94
+[10-Aug-2025 04:39:32 America/Boise] PHP Warning:  Constant WP_DEBUG already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 97
+[10-Aug-2025 04:39:32 America/Boise] PHP Warning:  Constant WP_DEBUG already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 104
+[10-Aug-2025 04:39:32 America/Boise] PHP Warning:  Constant WP_DEBUG_LOG already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 105
+[10-Aug-2025 04:39:32 America/Boise] PHP Warning:  Constant WP_DEBUG_DISPLAY already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 106
+[10-Aug-2025 04:39:32 America/Boise] PHP Warning:  Constant WP_DEBUG already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 97
+[10-Aug-2025 04:39:32 America/Boise] PHP Warning:  Constant WP_DEBUG already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 104
+[10-Aug-2025 04:39:32 America/Boise] PHP Warning:  Constant WP_DEBUG_LOG already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 105
+[10-Aug-2025 04:39:32 America/Boise] PHP Warning:  Constant WP_DEBUG_DISPLAY already defined in /home3/evilgeo2/public_html/greatpieceofapp/wp-config.php on line 106
