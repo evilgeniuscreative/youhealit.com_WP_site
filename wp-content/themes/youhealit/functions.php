@@ -113,6 +113,142 @@ function youhealit_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'youhealit_enqueue_scripts');
 
+/*
+theme: youhealit
+youhealit/functions.php
+Add this below youhealit_fallback_menu() function, above youhealit_register_post_types() function, approx line 45
+Creates individual WordPress pages for each service with proper titles and slugs
+*/
+function youhealit_create_service_pages() {
+    $services = youhealit_get_services();
+    
+    if (empty($services)) {
+        return;
+    }
+    
+    $created_count = 0;
+    
+    foreach ($services as $service) {
+        $service_title = ucwords(str_replace('-', ' ', $service['name']));
+        $service_slug = sanitize_title($service_title);
+        
+        // Check if page already exists
+        $existing_page = get_page_by_path($service_slug);
+        
+        if (!$existing_page) {
+            // Create the page
+            $page_data = [
+                'post_title' => $service_title,
+                'post_name' => $service_slug,
+                'post_content' => '<h2>' . $service_title . '</h2>' . "\n\n" . 
+                                '<p>' . $service['description'] . '</p>' . "\n\n" .
+                                '<p>Contact us today to learn more about our ' . strtolower($service_title) . ' services and schedule your consultation.</p>' . "\n\n" .
+                                '<div style="text-align: center; margin: 30px 0;">' . "\n" .
+                                '<a href="/contact" class="btn btn-red">Schedule Consultation</a>' . "\n" .
+                                '</div>',
+                'post_status' => 'publish',
+                'post_type' => 'page',
+                'post_author' => 1,
+                'meta_input' => [
+                    'service_name' => $service['name'],
+                    'service_description' => $service['description']
+                ]
+            ];
+            
+            $page_id = wp_insert_post($page_data);
+            
+            if ($page_id && !is_wp_error($page_id)) {
+                $created_count++;
+            }
+        }
+    }
+    
+    return $created_count;
+}
+
+
+/*
+theme: youhealit
+youhealit/functions.php
+REPLACE the youhealit_ajax_search_cities() function around line 95
+Fixed AJAX handler with proper error handling and POST data validation
+*/
+function youhealit_ajax_search_cities() {
+    // Check if query exists
+    if (!isset($_POST['query'])) {
+        wp_send_json_error('No query provided');
+        return;
+    }
+    
+    $query = sanitize_text_field($_POST['query']);
+    
+    if (strlen($query) < 2) {
+        wp_send_json_success([]);
+        return;
+    }
+    
+    // Simplified query - just search post titles first
+    $cities = get_posts([
+        'post_type' => 'city',
+        'posts_per_page' => 10,
+        'post_status' => 'publish',
+        'meta_query' => [
+            'relation' => 'OR',
+            [
+                'key' => 'city_name',
+                'value' => $query,
+                'compare' => 'LIKE'
+            ],
+            [
+                'key' => 'city_section_name', 
+                'value' => $query,
+                'compare' => 'LIKE'
+            ]
+        ]
+    ]);
+    
+    $results = [];
+    foreach ($cities as $city) {
+        $city_name = get_post_meta($city->ID, 'city_name', true);
+        $city_section = get_post_meta($city->ID, 'city_section_name', true);
+        $city_zip = get_post_meta($city->ID, 'city_zip', true);
+        
+        if (empty($city_name)) {
+            $city_name = $city->post_title;
+        }
+        
+        $results[] = [
+            'city_name' => $city_name,
+            'city_section_name' => $city_section,
+            'city_zip' => $city_zip,
+            'url' => get_permalink($city->ID)
+        ];
+    }
+    
+    wp_send_json_success($results);
+}
+add_action('wp_ajax_search_cities', 'youhealit_ajax_search_cities');
+add_action('wp_ajax_nopriv_search_cities', 'youhealit_ajax_search_cities');
+
+// Function to manually trigger service page creation (run once)
+function youhealit_admin_create_service_pages() {
+    if (current_user_can('manage_options') && isset($_GET['create_service_pages'])) {
+        $created = youhealit_create_service_pages();
+        
+        if ($created > 0) {
+            add_action('admin_notices', function() use ($created) {
+                echo '<div class="notice notice-success"><p>Successfully created ' . $created . ' service pages!</p></div>';
+            });
+        } else {
+            add_action('admin_notices', function() {
+                echo '<div class="notice notice-info"><p>No new service pages created - they may already exist.</p></div>';
+            });
+        }
+    }
+}
+add_action('admin_init', 'youhealit_admin_create_service_pages');
+
+
 // Register Custom Post Types
 function youhealit_register_post_types() {
     // Cities Post Type
