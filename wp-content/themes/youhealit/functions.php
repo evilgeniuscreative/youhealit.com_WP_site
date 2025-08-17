@@ -17,7 +17,7 @@ function youhealit_theme_setup() {
 add_action('after_setup_theme', 'youhealit_theme_setup');
 
 
-define('YHI_PHONE', '${YHI_PHONE}');
+define('YHI_PHONE', '(919) 241-5032');
 define('YHI_EMAIL', 'info@youhealit.com');
 define('YHI_BUSINESS_NAME', 'YouHealIt - Wellness Center of the Triangle');
 define('YHI_TAGLINE', 'Professional health and wellness services throughout North Carolina');

@@ -135,6 +135,105 @@ body {
     color: white;
 }
 
+/* Drop Down Menus */
+/* DROPDOWN MENU CSS - Add to your style.css */
+
+/* Main navigation with dropdown support */
+.nav-menu {
+    position: relative;
+}
+
+.nav-menu li {
+    position: relative;
+}
+
+/* Hide dropdown by default */
+.nav-menu ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--primary-green);
+    min-width: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Show dropdown on hover */
+.nav-menu li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown menu items */
+.nav-menu ul li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.nav-menu ul a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: none;
+    border-radius: 0;
+    background: none;
+    transition: background 0.3s ease;
+}
+
+.nav-menu ul a:hover {
+    background: var(--secondary-green);
+    color: white;
+}
+
+/* Arrow indicator for items with dropdowns */
+.nav-menu .menu-item-has-children > a::after {
+    content: ' ▼';
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+/* Third level dropdowns (if needed) */
+.nav-menu ul ul {
+    top: 0;
+    left: 100%;
+}
+
+/* Mobile responsive dropdown */
+@media (max-width: 768px) {
+    .nav-menu ul {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: var(--secondary-green);
+        margin-top: 10px;
+    }
+
+    .nav-menu .menu-item-has-children > a::after {
+        content: ' ▼';
+        float: right;
+    }
+
+    .nav-menu ul a {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+}
 /* Header Info & Buttons - FIXED */
 .header-info {
     justify-self: end;

@@ -3,6 +3,7 @@
 Image Fetcher for YouHealIt CSV Data
 Fetches images from Wikipedia/Wikimedia or finds neighborhood images
 Saves as WebP format in /loc_images/ directory
+Uses database ID or dedicated image_filename column for clean implementation
 """
 
 import requests
@@ -22,8 +23,103 @@ PLACEHOLDER_PATH = "placeholder.webp"
 MAX_RETRIES = 3
 DELAY_BETWEEN_REQUESTS = 1  # seconds
 
+# Using simple city+neighborhood naming strategy
+# Generates names like: durhamdowntown.webp, raleighbrier-creek.webp
+NAMING_STRATEGY = 'simple_slug'
+
 # Create output directory
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+def generate_image_filename(row, index):
+    """Generate clean image filename: cityneighborhood.webp or city001.webp"""
+    
+    # Use dedicated page_image column if it exists and has a value
+    if 'page_image' in row and pd.notna(row['page_image']) and str(row['page_image']).strip():
+        filename = str(row['page_image']).strip()
+        if not filename.endswith('.webp'):
+            filename += '.webp'
+        return filename
+    
+    # Generate from city + neighborhood data (this shouldn't happen during normal operation
+    # since we populate page_image column first, but keeping as fallback)
+    city = ''
+    if 'city_name' in row and pd.notna(row['city_name']):
+        city = str(row['city_name']).lower()
+        city = re.sub(r'[^a-z0-9]', '', city)
+    
+    neighborhood = ''
+    if 'city_section_name' in row and pd.notna(row['city_section_name']):
+        neighborhood = str(row['city_section_name']).lower()
+        neighborhood = re.sub(r'[^a-z0-9]', '', neighborhood)
+    
+    if city and neighborhood:
+        return city + neighborhood + '.webp'
+    elif city:
+        return f"{city}{index:03d}.webp"  # Simple fallback numbering
+    
+    return f"location{index + 1}.webp"
+
+def generate_simple_slug_with_numbering(row, index, city_counts):
+    """Generate simple slug with city numbering: durham.webp, durham001.webp, etc."""
+    
+    # Get city name
+    city = ''
+    if 'city_name' in row and pd.notna(row['city_name']):
+        city = str(row['city_name']).lower()
+        city = re.sub(r'[^a-z0-9]', '', city)  # Remove all non-alphanumeric
+    
+    # Get neighborhood/section
+    neighborhood = ''
+    if 'city_section_name' in row and pd.notna(row['city_section_name']):
+        neighborhood = str(row['city_section_name']).lower()
+        neighborhood = re.sub(r'[^a-z0-9]', '', neighborhood)  # Remove all non-alphanumeric
+    
+    # Generate filename
+    if city and neighborhood:
+        # Has both city and neighborhood: durhamdowntown.webp
+        filename = city + neighborhood + '.webp'
+        return filename
+    
+    elif city:
+        # Only city, need to number: durham.webp, durham001.webp, etc.
+        if city not in city_counts:
+            city_counts[city] = 0
+            # First occurrence gets no number
+            filename = city + '.webp'
+        else:
+            # Subsequent occurrences get numbered
+            city_counts[city] += 1
+            filename = f"{city}{city_counts[city]:03d}.webp"
+        
+        return filename
+    
+    # Fallback if no city data
+    return f"location{index + 1}.webp"
+
+def update_csv_with_page_image_column(df):
+    """Add page_image column to CSV with simple filenames and city numbering"""
+    if 'page_image' not in df.columns:
+        df['page_image'] = ''
+        
+        # Track city counts for numbering
+        city_counts = {}
+        
+        for index, row in df.iterrows():
+            # Generate the simple filename (without .webp extension for database storage)
+            filename = generate_simple_slug_with_numbering(row, index, city_counts)
+            filename_without_ext = filename.replace('.webp', '')
+            df.at[index, 'page_image'] = filename_without_ext
+        
+        # Save updated CSV
+        backup_file = CSV_FILE.replace('.csv', '_backup.csv')
+        df.to_csv(backup_file, index=False)
+        print(f"💾 Created backup: {backup_file}")
+        
+        df.to_csv(CSV_FILE, index=False)
+        print(f"📝 Updated CSV with page_image column")
+        print(f"📝 Sample filenames: {df['page_image'].head(10).tolist()}")
+    
+    return df
 
 def get_wikimedia_image(wikimedia_url):
     """Extract main image from Wikimedia page"""
@@ -58,7 +154,7 @@ def get_wikimedia_image(wikimedia_url):
     return None
 
 def search_neighborhood_image(city_name, neighborhood=None):
-    """Search for neighborhood/city images using Google Images-like approach"""
+    """Search for neighborhood/city images using Wikipedia"""
     try:
         # Construct search query
         if neighborhood:
@@ -138,22 +234,21 @@ def main():
     try:
         df = pd.read_csv(CSV_FILE)
         print(f"Loaded {len(df)} rows from CSV")
+        print(f"Columns: {list(df.columns)}")
+        print(f"Using simple slug naming strategy")
     except Exception as e:
         print(f"Error loading CSV: {e}")
         return
     
+    # Update CSV with page_image column
+    df = update_csv_with_page_image_column(df)
+    
     # Process each row
+    successful_downloads = 0
     for index, row in df.iterrows():
         try:
-            # Create filename from youhealit_page or city info
-            if 'youhealit_page' in row and pd.notna(row['youhealit_page']):
-                filename = row['youhealit_page'].strip('/')
-                filename = re.sub(r'[^a-zA-Z0-9\-_/]', '', filename)
-                filename = filename.replace('/', '-') + '.webp'
-            else:
-                city_name = row.get('city_name', f'city_{index}')
-                filename = re.sub(r'[^a-zA-Z0-9\-_]', '-', city_name.lower()) + '.webp'
-            
+            # Generate clean filename
+            filename = generate_image_filename(row, index)
             output_path = os.path.join(OUTPUT_DIR, filename)
             
             # Skip if file already exists
@@ -172,6 +267,7 @@ def main():
                     if download_and_convert_image(img_url, output_path):
                         print(f"✅ Downloaded from Wikimedia: {filename}")
                         image_found = True
+                        successful_downloads += 1
             
             # If no Wikimedia image, search for neighborhood/city image
             if not image_found:
@@ -183,6 +279,7 @@ def main():
                     if download_and_convert_image(img_url, output_path):
                         print(f"✅ Downloaded neighborhood image: {filename}")
                         image_found = True
+                        successful_downloads += 1
             
             # Use placeholder if no image found
             if not image_found:
@@ -200,7 +297,9 @@ def main():
             print(f"❌ Error processing row {index}: {e}")
             continue
     
-    print("🎉 Image fetching complete!")
+    print(f"🎉 Image fetching complete!")
+    print(f"📊 Successfully downloaded {successful_downloads} images")
+    print(f"📁 Images saved to: {OUTPUT_DIR}/")
 
 if __name__ == "__main__":
     main()
