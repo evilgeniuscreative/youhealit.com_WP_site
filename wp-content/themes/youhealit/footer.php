@@ -10,7 +10,7 @@ date(), bloginfo(), wp_footer()
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-services">
-            <h3>Our Services</h3>
+            <h3 class="footer-services-title">Our Services</h3>
             <ul>
                 <?php 
                 $services = youhealit_get_services();
@@ -31,7 +31,7 @@ date(), bloginfo(), wp_footer()
                     foreach ($priority_services as $priority) {
                         $service_title = ucwords(str_replace('-', ' ', $priority));
                         $service_slug = sanitize_title($priority) . '-near-me';
-                        echo '<li><a href="/north-carolina/services/' . $service_slug . '">' . esc_html($service_title) . ' Near Me</a></li>';
+                        echo '<li><a href="/north-carolina/services/' . $service_slug . '">' . esc_html($service_title) . ' Near Me</a> | </li>';
                     }
                     
                     // Display random services
@@ -39,7 +39,7 @@ date(), bloginfo(), wp_footer()
                         $service = $other_services[$index];
                         $service_title = ucwords(str_replace('-', ' ', $service['name']));
                         $service_slug = sanitize_title($service['name']) . '-near-me';
-                        echo '<li><a href="/north-carolina/services/' . $service_slug . '">' . esc_html($service_title) . ' Near Me</a></li>';
+                        echo '<li><a href="/north-carolina/services/' . $service_slug . '">' . esc_html($service_title) . ' Near Me</a> <?php if(++$i < $numItems) { echo " | "; }  ?></li>';
                     }
                 }
                 ?>

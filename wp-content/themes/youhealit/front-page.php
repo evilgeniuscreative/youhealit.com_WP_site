@@ -7,7 +7,7 @@
   </video>
   
   <!-- Carousel over the video -->
-  <div class="carousel-wrapper">
+  <div class="carousel-wrapper insidehomepage">
     <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
     <div class="carousel" id="carousel">
       <?php if (function_exists('have_rows') && have_rows('homepage_carousel')): ?>

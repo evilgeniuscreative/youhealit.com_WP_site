@@ -27,7 +27,7 @@ if ($alert_message): ?>
 <?php endif; ?>
 
 <!-- Header -->
-<header class="site-header">
+<header class="site-header helloworld <?php echo is_front_page() ? 'homepage-header' : ''; ?>">
     <div class="header-inner">
         <!-- Logo -->
         <a href="<?php echo home_url(); ?>" class="logo-link">
