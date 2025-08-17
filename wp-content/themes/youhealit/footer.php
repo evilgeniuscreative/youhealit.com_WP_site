@@ -57,5 +57,6 @@ date(), bloginfo(), wp_footer()
 </footer>
 
 <?php wp_footer(); ?>
+<a href="<?php echo esc_url( home_url('/sitemap/') ); ?>">Sitemap</a>
 </body>
 </html>

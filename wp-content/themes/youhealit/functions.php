@@ -39,6 +39,57 @@ function youhealit_fallback_menu() {
     echo '</ul>';
 }
 
+// Ensure core XML sitemaps are ON (WordPress 5.5+)
+add_filter('wp_sitemaps_enabled', function ($on) { return true; });
+
+/**
+ * Control which post types/taxonomies appear in the sitemap.
+ * Edit the arrays to suit what you want indexed.
+ */
+add_filter('wp_sitemaps_post_types', function ($post_types) {
+    // EXAMPLE: remove noisy post types you don’t want indexed
+    foreach (['attachment','tribe_events','tec_calendar_embed'] as $pt) {
+        unset($post_types[$pt]);
+    }
+    // If you *don’t* want your CPT `service` in the sitemap, also unset it:
+    // unset($post_types['service']);
+    return $post_types;
+});
+
+add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
+    // EXAMPLE: remove taxonomies you don’t want indexed
+    foreach (['post_format','service-type','monsterinsights_note_category'] as $tx) {
+        unset($taxonomies[$tx]);
+    }
+    return $taxonomies;
+});
+
+/**
+ * OOTB SITEMAP MODS
+ * Fine-tune what gets queried into the post-type sitemaps.
+ * Useful for excluding specific IDs/statuses, or limiting posts per type.
+ */
+add_filter('wp_sitemaps_posts_query_args', function ($args, $post_type) {
+    // Only published, exclude password-protected (defaults already do this, but explicit is nice)
+    $args['post_status'] = 'publish';
+    $args['has_password'] = false;
+
+    // Example: exclude specific IDs globally (edit to taste)
+    // $args['post__not_in'] = [123, 456];
+
+    // Example: for CPT `service`, include only a specific taxonomy term
+    // if ($post_type === 'service') {
+    //     $args['tax_query'] = [[
+    //         'taxonomy' => 'service-category',
+    //         'field'    => 'slug',
+    //         'terms'    => ['featured'],
+    //     ]];
+    // }
+    return $args;
+}, 10, 2);
+
+
+
 function remove_spaces($string) {
     return strtolower(str_replace(' ', '', $string));
 }
