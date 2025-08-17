@@ -13,22 +13,23 @@ if (!function_exists('remove_spaces')) {
 ?>
 <style>html{scroll-behavior:smooth}</style>
 
-<div class="services-container" style="padding:40px;">
+<div class="services-container services-page-container">
     <h1>Our Services</h1>
 
     <?php if (!empty($services)): ?>
-        <ul class="services-toc" style="margin:0 0 24px;padding-left:18px;">
+        <ul class="services-toc">
             <?php foreach($services as $svc): $id = remove_spaces($svc['name']); ?>
-                <li><a href="#<?php echo esc_attr($id); ?>"><?php echo esc_html($svc['name']); ?></a></li>
+                <li><a href="#<?php echo esc_attr($id); ?>"><?php echo function_exists('youhealit_title_case') ? youhealit_title_case($svc['name']) : ucwords($svc['name']); ?></a></li>
             <?php endforeach; ?>
         </ul>
-        <hr style="margin:24px 0;" />
+        <hr class="services-divider" />
         <?php foreach($services as $svc): $id = remove_spaces($svc['name']); ?>
-            <section id="<?php echo esc_attr($id); ?>" class="service-block" style="padding-top:80px;margin-bottom:40px;border-bottom:1px solid #ddd;">
-                <h2><?php echo esc_html($svc['name']); ?></h2>
-                <p><?php echo esc_html($svc['description']); ?></p>
+            <section id="<?php echo esc_attr($id); ?>" class="service-block">
+                <h2><?php echo function_exists('youhealit_title_case') ? youhealit_title_case($svc['name']) : ucwords($svc['name']); ?></h2>
+                <p><?php echo wp_kses_post($svc['description']); ?></p>
             </section>
         <?php endforeach; ?>
+        <p>If what you're looking for isn't listed above, don't worry! We may offer it. Please call us at <a href="tel:9192552525">919-241-5032</a> to ask about our services.</p>  
     <?php else: ?>
         <p>No services found.</p>
     <?php endif; ?>

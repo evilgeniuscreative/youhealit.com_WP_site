@@ -16,6 +16,13 @@ function youhealit_theme_setup() {
 }
 add_action('after_setup_theme', 'youhealit_theme_setup');
 
+
+define('YHI_PHONE', '${YHI_PHONE}');
+define('YHI_EMAIL', 'info@youhealit.com');
+define('YHI_BUSINESS_NAME', 'YouHealIt - Wellness Center of the Triangle');
+define('YHI_TAGLINE', 'Professional health and wellness services throughout North Carolina');
+define('YHI_ADDRESS', 'North Carolina');
+
 /*
 Fallback menu function that displays basic navigation when no WordPress menu is assigned.
 Creates hardcoded navigation links for primary site pages.
@@ -168,7 +175,6 @@ function youhealit_create_service_pages() {
 
 
 /*
-theme: youhealit
 youhealit/functions.php
 REPLACE the youhealit_ajax_search_cities() function around line 95
 Fixed AJAX handler with proper error handling and POST data validation
@@ -608,6 +614,22 @@ function youhealit_clean_zip_code($zip_code) {
     }
     
     return $zip_code;
+}
+
+function youhealit_title_case($string) {
+    // Handle special cases first
+    $special_cases = [
+        'tbi' => 'TBI',
+        'qigong' => 'QiGong'
+    ];
+    
+    $lower = strtolower($string);
+    if (isset($special_cases[$lower])) {
+        return $special_cases[$lower];
+    }
+    
+    // Standard title case
+    return ucwords(strtolower($string));
 }
 
 function youhealit_randomize_services() {

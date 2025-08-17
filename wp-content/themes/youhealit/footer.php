@@ -50,7 +50,7 @@ date(), bloginfo(), wp_footer()
         <p>Professional health and wellness services throughout North Carolina.</p>
         
         <div class="footer-contact">
-            <p><strong>Phone:</strong> (919) 241-5092</p>
+            <p><strong>Phone:</strong> ${YHI_PHONE}</p>
             <p><strong>Email:</strong> info@youhealit.com</p>
         </div>
     </div>

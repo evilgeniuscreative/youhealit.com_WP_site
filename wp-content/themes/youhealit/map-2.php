@@ -119,7 +119,7 @@
                     <h3>📍 Clinic Location</h3>
                     <p>401 Meadowlands Drive<br>
                     Hillsborough, NC 27278<br>
-                    Phone: (919) 241-5092</p>
+                    Phone: ${YHI_PHONE}</p>
                 </div>
                 
                 <div class="info-card">
@@ -196,7 +196,7 @@
                     <div style="padding: 10px; font-family: Arial, sans-serif;">
                         <h3 style="margin: 0 0 10px 0; color: #8bc34a;">Wellness Center of the Triangle NC</h3>
                         <p style="margin: 0 0 5px 0;"><strong>📍 Address:</strong><br>401 Meadowlands Drive<br>Hillsborough, NC 27278</p>
-                        <p style="margin: 0 0 5px 0;"><strong>📞 Phone:</strong> (919) 241-5092</p>
+                        <p style="margin: 0 0 5px 0;"><strong>📞 Phone:</strong> ${YHI_PHONE}</p>
                         <p style="margin: 0;"><strong>🕒 Hours:</strong> Mon-Fri 9am-5pm</p>
                     </div>
                 `

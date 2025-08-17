@@ -19,7 +19,7 @@ function initMap() {
       <strong><a href="https://www.google.com/maps?q=401+Meadowlands+Dr,+Hillsborough,+NC+27278" target="_blank">Health Center of the Triangle</a></strong><br>
       401 Meadowlands Dr, Ste. 101<br>
       Hillsborough, NC 27278<br>
-      <a href="tel:9192415032">(919) 241-5032</a>
+      <a href="tel:${YHI_PHONE}">${YHI_PHONE}</a>
     </div>
   `;
 

@@ -52,7 +52,7 @@ if ($alert_message): ?>
     <!-- Header Info & Buttons -->
     <div class="header-info">
       <div class="phone-number" style="color: white; font-size: 14px; margin-bottom: 5px;">
-        Call Us: <strong>(919) 241-5092</strong>
+        Call Us: <strong>${YHI_PHONE}</strong>
       </div>
       <div class="header-buttons">
         <a href="#" class="btn btn-red">REQUEST AN APPOINTMENT TODAY!</a>

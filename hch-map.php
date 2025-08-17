@@ -32,7 +32,7 @@
       <div class="contact-info">
         <h3 style="color: var(--text-dark); font-size: 1.2rem; margin-bottom: 15px;">CONTACT</h3>
         <p style="margin-bottom: 10px;">
-          <strong>Phone:</strong> <a href="tel:9192415092" style="color: var(--red-accent);">(919) 241-5092</a>
+          <strong>Phone:</strong> <a href="tel:${YHI_PHONE}" style="color: var(--red-accent);">${YHI_PHONE}</a>
         </p>
         <p style="margin-bottom: 20px;">
           <strong>Email:</strong> <a href="mailto:info@youhealit.com" style="color: var(--red-accent);">info@youhealit.com</a>

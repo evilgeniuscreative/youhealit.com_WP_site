@@ -50,7 +50,7 @@ if ($alert_message): ?>
 
         <!-- Header Info & Buttons -->
         <div class="header-info">
-            <div class="phone-number">(919) 241-5092</div>
+            <div class="phone-number">${YHI_PHONE}</div>
             <div class="header-buttons">
                 <a href="/contact" class="btn-red">Request an Appointment Today!</a>
                 <a href="/shop" class="btn-shop">Shop Now</a>
