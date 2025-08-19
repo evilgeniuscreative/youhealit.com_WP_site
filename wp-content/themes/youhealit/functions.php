@@ -17,11 +17,40 @@ function youhealit_theme_setup() {
 add_action('after_setup_theme', 'youhealit_theme_setup');
 
 
-define('YHI_PHONE', '(919) 241-5032');
+// Constants for email, business name, tagline, and address
+if(!defined('YHI_EMAIL')) {
 define('YHI_EMAIL', 'info@youhealit.com');
+}
+if(!defined('YHI_BUSINESS_NAME')) {
 define('YHI_BUSINESS_NAME', 'YouHealIt - Wellness Center of the Triangle');
+}
+if(!defined('YHI_TAGLINE')) {
 define('YHI_TAGLINE', 'Professional health and wellness services throughout North Carolina');
+}
+if(!defined('YHI_ADDRESS')) {
 define('YHI_ADDRESS', 'North Carolina');
+}
+
+// Constants for phone and shop URL
+if (!defined('YHI_PHONE')) {
+    define('YHI_PHONE', '(919) 241-5032');
+}
+
+if (!defined('YHI_SHOP_URL')) {
+    define('YHI_SHOP_URL', 'https://youhealit.standardprocess.com/');
+}
+
+if(!defined('YHI_APPT_TXT')) {
+define('YHI_APPT_TXT', 'REQUEST AN APPOINTMENT TODAY');
+}
+
+if(!defined('YHI_GET_SUPPLEMENTS')) {
+define('YHI_GET_SUPPLEMENTS', 'GET YOUR GOLD-STANDARD SUPPLEMENTS!');
+}
+
+if(!defined('YHI_ADDRESS')) {
+define('YHI_ADDRESS', 'North Carolina');
+}
 
 /*
 Fallback menu function that displays basic navigation when no WordPress menu is assigned.
@@ -1929,6 +1958,171 @@ function get_service_names() {
 // If that debug helper was added earlier, kill it.
 if (function_exists('debug_stylesheet')) {
     remove_action('wp_head', 'debug_stylesheet');
+}
+
+/*
+Add this to your functions.php file
+YouHealIt Custom Navigation Walker and Helper Functions
+*/
+
+// Custom Walker for Navigation Menu
+class YouHealIt_Walker_Nav_Menu extends Walker_Nav_Menu {
+    
+    // Start Level - wrapper for sub-menus
+    function start_lvl(&$output, $depth = 0, $args = null) {
+        $indent = str_repeat("\t", $depth);
+        $submenu_class = ($depth == 0) ? 'sub-menu toggle-submenu' : 'sub-menu toggle-submenu';
+        
+        // Add special class for Services menu
+        if (strpos($output, 'Services') !== false && $depth == 0) {
+            $submenu_class .= ' wda-long-menu';
+        }
+        
+        $output .= "\n$indent<ul class=\"$submenu_class\">\n";
+    }
+
+    // End Level
+    function end_lvl(&$output, $depth = 0, $args = null) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "$indent</ul>\n";
+    }
+
+    // Start Element - individual menu items
+    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+        $indent = ($depth) ? str_repeat("\t", $depth) : '';
+
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $classes[] = 'menu-item-' . $item->ID;
+
+        // Add toggle class for items with children
+        $has_children = in_array('menu-item-has-children', $classes);
+        if ($has_children) {
+            $classes[] = 'toggle-menu-item-parent';
+        }
+
+        // Current page classes
+        if (in_array('current-menu-item', $classes) || in_array('current_page_item', $classes)) {
+            $classes[] = 'current';
+        }
+
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
+        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+
+        $id = apply_filters('nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args);
+        $id = $id ? ' id="' . esc_attr($id) . '"' : '';
+
+        $output .= $indent . '<li' . $id . $class_names .'>';
+
+        $attributes = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) .'"' : '';
+        $attributes .= ! empty($item->target)     ? ' target="' . esc_attr($item->target     ) .'"' : '';
+        $attributes .= ! empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn        ) .'"' : '';
+        $attributes .= ! empty($item->url)        ? ' href="'   . esc_attr($item->url        ) .'"' : '';
+
+        $item_output = isset($args->before) ? $args->before : '';
+        $item_output .= '<a' . $attributes .'>';
+        $item_output .= (isset($args->link_before) ? $args->link_before : '') . apply_filters('the_title', $item->title, $item->ID) . (isset($args->link_after) ? $args->link_after : '');
+        $item_output .= '</a>';
+        $item_output .= isset($args->after) ? $args->after : '';
+
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+    }
+
+    // End Element
+    function end_el(&$output, $item, $depth = 0, $args = null) {
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $has_children = in_array('menu-item-has-children', $classes);
+        
+        // Add toggle caret for items with children
+        if ($has_children) {
+            $output .= '<span class="toggle-caret"><i class="fa fa-plus"></i></span>';
+        }
+        
+        $output .= "</li>\n";
+    }
+}
+
+
+// Register navigation menus
+function youhealit_register_nav_menus() {
+    register_nav_menus(array(
+        'primary' => 'Primary Navigation',
+        'services' => 'Services Menu'
+    ));
+}
+add_action('after_setup_theme', 'youhealit_register_nav_menus');
+
+// Add Services menu automation
+function youhealit_add_services_to_menu($menu_id, $menu_item_db_id, $args) {
+    // Only run on the primary menu
+    if ($args->theme_location !== 'primary') {
+        return;
+    }
+    
+    // Check if this is the Services menu item
+    $menu_item = wp_setup_nav_menu_item(get_post($menu_item_db_id));
+    if ($menu_item->title === 'Services') {
+        youhealit_populate_services_submenu($menu_item_db_id);
+    }
+}
+add_action('wp_update_nav_menu_item', 'youhealit_add_services_to_menu', 10, 3);
+
+// Function to populate Services submenu
+function youhealit_populate_services_submenu($parent_menu_id) {
+    // Priority services (these appear first)
+    $priority_services = [
+        'Chiropractic' => '/chiropractic-care/',
+        'Massage Therapy' => '/massage-therapy/',
+        'Acupuncture' => '/acupuncture/',
+        'Integrated Healthcare' => '/integrated-healthcare/',
+        'Weight Loss' => '/weight-loss/'
+    ];
+    
+    // All other services (alphabetical)
+    $other_services = [
+        'ADHD Treatment' => '/adhd-treatment/',
+        'Addiction Counseling' => '/addiction-counseling/',
+        'Alternative Medicine' => '/alternative-medicine/',
+        'Anxiety Treatment' => '/anxiety-treatment/',
+        'Arthritis Treatment' => '/arthritis-treatment/',
+        'Autism Support' => '/autism-support/',
+        'Back Pain Relief' => '/back-pain-relief/',
+        'Chronic Pain Management' => '/chronic-pain-management/',
+        'Cold Laser' => '/cold-laser/',
+        'Concussion Treatment' => '/concussion-treatment/',
+        'Cranium' => '/cranium/',
+        'Detox Programs' => '/detox-programs/',
+        'Fibromyalgia Treatment' => '/fibromyalgia-treatment/',
+        'Foot Care' => '/foot-care/',
+        'Geriatric Care' => '/geriatric-care/',
+        'Headache Treatment' => '/headache-treatment/',
+        'Hormone Therapy' => '/hormone-therapy/',
+        'Hypnotherapy' => '/hypnotherapy/',
+        'Learning Disabilities' => '/learning-disabilities/',
+        'Meditation' => '/meditation/',
+        'Men\'s Health' => '/mens-health/',
+        'Microbiome Test Kit' => '/microbiome-test-kit/',
+        'Neck Pain Treatment' => '/neck-pain-treatment/',
+        'Nutritional Counseling' => '/nutritional-counseling/',
+        'Occupational Therapy' => '/occupational-therapy/',
+        'Pain Management' => '/pain-management/',
+        'Pediatric Therapy' => '/pediatric-therapy/',
+        'Physical Therapy' => '/physical-therapy/',
+        'Postpartum Care' => '/postpartum-care/',
+        'Prenatal Care' => '/prenatal-care/',
+        'PTSD Therapy' => '/ptsd-therapy/',
+        'Rehabilitation' => '/rehabilitation/',
+        'Sleep Therapy' => '/sleep-therapy/',
+        'Soul Integration' => '/soul-integration/',
+        'Sports Medicine' => '/sports-medicine/',
+        'Stress Management' => '/stress-management/',
+        'Wellness Coaching' => '/wellness-coaching/',
+        'Women\'s Health' => '/womens-health/',
+        'Yoga and QiGong' => '/yoga-and-qigong/',
+        'Yoga Therapy' => '/yoga-therapy/'
+    ];
+    
+    // This would need additional logic to programmatically add menu items
+    // For now, this serves as a reference for the menu structure
 }
 
 ?>

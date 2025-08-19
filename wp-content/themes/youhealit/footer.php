@@ -31,15 +31,17 @@ date(), bloginfo(), wp_footer()
                     foreach ($priority_services as $priority) {
                         $service_title = ucwords(str_replace('-', ' ', $priority));
                         $service_slug = sanitize_title($priority) . '-near-me';
-                        echo '<li><a href="/north-carolina/services/' . $service_slug . '">' . esc_html($service_title) . ' Near Me</a> | </li>';
+                        $service_name = 'service-item/'.sanitize_title($priority);
+
+                        echo '<li><a href="' . $service_name . '">' . esc_html($service_title) . ' Near Me</a> | </li>';
                     }
                     
                     // Display random services
                     foreach ($random_services as $index) {
                         $service = $other_services[$index];
                         $service_title = ucwords(str_replace('-', ' ', $service['name']));
-                        $service_slug = sanitize_title($service['name']) . '-near-me';
-                        echo '<li><a href="/north-carolina/services/' . $service_slug . '">' . esc_html($service_title) . ' Near Me</a> <?php if(++$i < $numItems) { echo " | "; }  ?></li>';
+                        $service_name = 'service-item/' . sanitize_title($service['name']);
+                        echo '<li><a href="' . $service_name . '">' . esc_html($service_title) . ' Near Me</a> | </li>';
                     }
                 }
                 ?>
@@ -50,7 +52,7 @@ date(), bloginfo(), wp_footer()
         <p>Professional health and wellness services throughout North Carolina.</p>
         
         <div class="footer-contact">
-            <p><strong>Phone:</strong> ${YHI_PHONE}</p>
+            <p><strong>Phone:</strong> <?php echo defined('YHI_PHONE')?></p>
             <p><strong>Email:</strong> info@youhealit.com</p>
         </div>
     </div>

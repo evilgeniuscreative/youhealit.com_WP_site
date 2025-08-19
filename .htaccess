@@ -3,6 +3,9 @@
 	Header set X-Newfold-Cache-Level "2"
 </IfModule>
 # END Newfold Headers
+<Files ".env">
+  Require all denied
+</Files>
 # BEGIN Newfold Browser Cache
 <IfModule mod_expires.c>
 	ExpiresActive On

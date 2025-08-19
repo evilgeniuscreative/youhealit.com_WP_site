@@ -13,47 +13,100 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php wp_title('|', true, 'right'); ?></title>
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?v=<?php echo time() . rand(1000, 9999); ?>" type="text/css" media="all">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 
-<!-- Top Alert Bar -->
-<?php 
-$alert_message = 'Concussion research project here, <span class="highlight">check it out!</span>';
-if ($alert_message): ?>
-  <div class="top-alert">
-    <?php echo $alert_message; ?>
-  </div>
-<?php endif; ?>
-
 <!-- Header -->
-<header class="site-header helloworld <?php echo is_front_page() ? 'homepage-header' : ''; ?>">
-    <div class="header-inner">
-        <!-- Logo -->
-        <a href="<?php echo home_url(); ?>" class="logo-link">
-            <?php if (has_custom_logo()): ?>
-                <?php the_custom_logo(); ?>
-            <?php else: ?>
-                <div class="text-logo">YouHealIt</div>
-            <?php endif; ?>
-        </a>
+<header id="site-header" class="main-header regular_header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="header-spacer" style="height: 156px;"></div>
 
-        <!-- Main Navigation -->
-        <nav class="main-nav">
-            <?php wp_nav_menu([
-                'theme_location' => 'primary',
-                'menu_class' => 'nav-menu',
-                'container' => false,
-                'fallback_cb' => 'youhealit_fallback_menu'
-            ]); ?>
-        </nav>
+    <div class="main-head-wrap">
+        <!-- Top Header Bar -->
+        <div class="top-header">
+            <p>Concussion research project here, <a href="<?php echo home_url('/concussion-treatment/'); ?>">check it out!</a></p>
+        </div>
 
-        <!-- Header Info & Buttons -->
-        <div class="header-info">
-            <div class="phone-number"><?php echo YHI_PHONE; ?></div>
-            <div class="header-buttons">
-                <a href="/contact" class="btn-red">Request an Appointment Today!</a>
-                <a href="/shop" class="btn-shop">Shop Now</a>
+        <!-- Upper Header Info Row -->
+        <div id="regular-header">
+            <div class="container-wide dm-flex">
+                <div class="dm-third phone-header">
+                    <p><i class="fa fa-phone-alt"></i><a href="tel:<?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?>"><?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?></a></p>
+                </div>
+                <div class="dm-third address-header">
+                    <p><i class="fa fa-map-marker-alt"></i><a href="https://maps.app.goo.gl/ap8WekMqJJTcSsjL8" target="_blank" rel="noreferrer noopener"> Our <strong> Hillsborough, NC </strong> Office </a></p>
+                </div>
+                <div class="dm-third social-header">
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/HealthCenterHillsborough?fref=ts" class="header-facebook" target="_blank" rel="noreferrer noopener">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                        <a href="https://maps.app.goo.gl/sb7f7htAMLSCew4KA" class="header-google" target="_blank" rel="noreferrer noopener">
+                            <span class="fa fa-google"></span>
+                        </a>
+                        <a href="https://twitter.com/HillsboroughHC" class="header-twitter" target="_blank" rel="noreferrer noopener">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UC86mQ-N9EPrM5RM0B18xGDw" class="header-youtube" target="_blank" rel="noreferrer noopener">
+                            <span class="fa fa-youtube"></span>
+                        </a>
+                        <a href="http://www.yelp.com/biz/health-center-of-hillsborough-hillsborough" class="header-yelp" target="_blank" rel="noreferrer noopener">
+                            <span class="fa fa-yelp"></span>
+                        </a>
+                        <a href="http://www.pinterest.com/HillsboroHealth/" class="header-pinterest-p" target="_blank" rel="noreferrer noopener">
+                            <span class="fa fa-pinterest-p"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header with Logo and Navigation -->
+        <div id="header">
+            <div class="container-wide">
+                <div id="secondary-navigation" class="secondary-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                    
+                    <!-- Logo Section -->
+                    <div class="logo-wrap">
+                        <h1 id="logo" class="image-logo" itemprop="headline">
+                            <a href="<?php echo home_url(); ?>">
+                                <?php if (has_custom_logo()): ?>
+                                    <?php the_custom_logo(); ?>
+                                <?php else: ?>
+                                    <img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/09/logo-Photoroom-2.png" alt="<?php echo get_bloginfo('name'); ?>">
+                                <?php endif; ?>
+                            </a>
+                        </h1>
+                    </div>
+
+                    <!-- Right Side Header Info & Navigation -->
+                    <div class="right-side-header">
+                        <div>
+                            <p>Call Us: <a href="tel:<?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?>"><?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?></a></p>
+                            <a href="<?php echo home_url('/appointments/'); ?>" class="btn"><?php echo defined('YHI_APPT_TXT') ? YHI_APPT_TXT : 'Request An Appointment Today!'; ?></a>
+                            <a href="<?php echo defined('YHI_SHOP_URL') ? YHI_SHOP_URL : 'https://youhealit.standardprocess.com/'; ?>" target="_blank" class="btn"><?php echo defined('YHI_GET_SUPPLEMENTS') ? YHI_GET_SUPPLEMENTS : 'Get Your Gold-Standard Supplements!'; ?></a>
+                        </div>
+
+                        <!-- Main Navigation Menu -->
+                        <nav class="navigation clearfix mobile-menu-wrapper">
+                            <?php wp_nav_menu([
+                                'theme_location' => 'primary',
+                                'menu_id' => 'menu-main-menu',
+                                'menu_class' => 'menu clearfix toggle-menu',
+                                'container' => false,
+                                'fallback_cb' => 'youhealit_fallback_menu',
+                                'walker' => new YouHealIt_Walker_Nav_Menu()
+                            ]); ?>
+                            <a href="#" id="pull" class="toggle-mobile-menu"></a>
+                        </nav>
+                    </div>
+                    <div id="mobile-menu-overlay"></div>
+                </div>
             </div>
         </div>
     </div>

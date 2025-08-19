@@ -18,6 +18,32 @@
  * @package WordPress
  */
 
+ // Load .env (no composer needed)
+$env_file = __DIR__ . '/.env';
+if (is_readable($env_file)) {
+    $pairs = parse_ini_file($env_file, false, INI_SCANNER_RAW);
+    if (is_array($pairs)) {
+        foreach ($pairs as $K => $V) {
+            if (!isset($_ENV[$K]))   $_ENV[$K] = $V;
+            if (!isset($_SERVER[$K]))$_SERVER[$K] = $V;
+            if (!defined($K)) define($K, $V);
+            putenv($K.'='.$V);
+        }
+    }
+}
+
+/*
+// Read as constant
+$googleKey = defined('GOOGLE_API_KEY') ? GOOGLE_API_KEY : '';
+
+// Or via getenv()
+$googleKey = getenv('GOOGLE_API_KEY');
+
+// Example: pass to JS
+wp_localize_script('youhealit-script', 'YHI', [
+    'googleKey' => getenv('GOOGLE_API_KEY'),
+]);
+ */
 
 if (!defined('WP_DEBUG'))        define('WP_DEBUG', true);
 if (!defined('WP_DEBUG_LOG'))    define('WP_DEBUG_LOG', true);

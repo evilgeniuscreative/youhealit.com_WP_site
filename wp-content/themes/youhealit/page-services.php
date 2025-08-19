@@ -29,7 +29,7 @@ if (!function_exists('remove_spaces')) {
                 <p><?php echo wp_kses_post($svc['description']); ?></p>
             </section>
         <?php endforeach; ?>
-        <p>If what you're looking for isn't listed above, don't worry! We may offer it. Please call us at <a href="tel:9192552525">919-241-5032</a> to ask about our services.</p>  
+        <p>If what you're looking for isn't listed above, don't worry! We may offer it. Please call us at <a href="tel:9192552525"><?php echo defined('YHI_PHONE') ? YHI_PHONE : '919-255-2525'; ?></a> to ask about our services.</p>  
     <?php else: ?>
         <p>No services found.</p>
     <?php endif; ?>

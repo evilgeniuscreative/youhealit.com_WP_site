@@ -1,0 +1,91 @@
+# WordPress SEO and Redirect Rules for YouHealIt
+
+# Standard WordPress rules
+RewriteEngine On
+RewriteBase /
+
+# Redirect old URLs to new structure
+RewriteRule ^services/(.*)$ /north-carolina/services/$1 [R=301,L]
+RewriteRule ^locations/(.*)$ /north-carolina/$1 [R=301,L]
+RewriteRule ^cities/(.*)$ /north-carolina/$1 [R=301,L]
+
+# Legacy redirects
+RewriteRule ^page-(.+)\.php$ /$1/ [R=301,L]
+RewriteRule ^our-services/?$ /services/ [R=301,L]
+
+# Service category redirects (alphabetical)
+RewriteRule ^acupuncture/?$ /north-carolina/services/acupuncture [R=301,L]
+RewriteRule ^acupressure/?$ /north-carolina/services/acupressure [R=301,L]
+RewriteRule ^back-pain/?$ /north-carolina/services/back-pain [R=301,L]
+RewriteRule ^car-accident/?$ /north-carolina/services/car-accident [R=301,L]
+RewriteRule ^chiropractic/?$ /north-carolina/services/chiropractic-care [R=301,L]
+RewriteRule ^chiropractic-care/?$ /north-carolina/services/chiropractic-care [R=301,L]
+RewriteRule ^cold-laser/?$ /north-carolina/services/cold-laser [R=301,L]
+RewriteRule ^concussion/?$ /north-carolina/services/concussion-treatment [R=301,L]
+RewriteRule ^concussion-treatment/?$ /north-carolina/services/concussion-treatment [R=301,L]
+RewriteRule ^cranial-sacral/?$ /north-carolina/services/cranial-sacral-technique [R=301,L]
+RewriteRule ^custom-orthotics/?$ /north-carolina/services/custom-orthotics [R=301,L]
+RewriteRule ^foot-care/?$ /north-carolina/services/foot-care [R=301,L]
+RewriteRule ^holistic/?$ /north-carolina/services/holistic-health-services [R=301,L]
+RewriteRule ^holistic-health/?$ /north-carolina/services/holistic-health-services [R=301,L]
+RewriteRule ^hypnosis/?$ /north-carolina/services/professional-hypnosis [R=301,L]
+RewriteRule ^laser-therapy/?$ /north-carolina/services/cold-laser [R=301,L]
+RewriteRule ^massage/?$ /north-carolina/services/massage-therapy [R=301,L]
+RewriteRule ^nutrition/?$ /north-carolina/services/nutritional-counseling [R=301,L]
+RewriteRule ^nutritional-counseling/?$ /north-carolina/services/nutritional-counseling [R=301,L]
+RewriteRule ^pain-management/?$ /north-carolina/services/pain-management [R=301,L]
+RewriteRule ^pain-treatment/?$ /north-carolina/services/pain-treatment [R=301,L]
+RewriteRule ^personal-injury/?$ /north-carolina/services/personal-injury [R=301,L]
+RewriteRule ^sports-rehab/?$ /north-carolina/services/sports-rehabilitation [R=301,L]
+RewriteRule ^sports-rehabilitation/?$ /north-carolina/services/sports-rehabilitation [R=301,L]
+RewriteRule ^stress-relief/?$ /north-carolina/services/stress-relief-techniques [R=301,L]
+RewriteRule ^testing/?$ /north-carolina/services/microbiome-and-hair-testing [R=301,L]
+RewriteRule ^workers-comp/?$ /north-carolina/services/workers-compensation [R=301,L]
+RewriteRule ^workers-compensation/?$ /north-carolina/services/workers-compensation [R=301,L]
+RewriteRule ^yoga/?$ /north-carolina/services/yoga-and-qui-gong [R=301,L]
+
+
+
+# City and neighborhood URL structure
+# Pattern: /north-carolina/city-zipcode/neighborhood/services
+RewriteRule ^north-carolina/([^/]+)/([^/]+)/([^/]+)/?$ /index.php?pagename=north-carolina/$1/$2&service_area=$3 [QSA,L]
+RewriteRule ^north-carolina/([^/]+)/([^/]+)/?$ /index.php?pagename=north-carolina/$1/$2 [QSA,L]
+RewriteRule ^north-carolina/([^/]+)/?$ /index.php?pagename=north-carolina/$1 [QSA,L]
+
+# WordPress standard rules
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+# Cache headers for performance
+<IfModule mod_expires.c>
+ExpiresActive on
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/jpg "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/webp "access plus 1 year"
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+Header always set X-Frame-Options DENY
+Header always set X-Content-Type-Options nosniff
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
