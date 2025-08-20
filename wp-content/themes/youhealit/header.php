@@ -13,11 +13,6 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php wp_title('|', true, 'right'); ?></title>
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?v=<?php echo time() . rand(1000, 9999); ?>" type="text/css" media="all">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -88,8 +83,8 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
                     <div class="right-side-header">
                         <div>
                             <p>Call Us: <a href="tel:<?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?>"><?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?></a></p>
-                            <a href="<?php echo home_url('/appointments/'); ?>" class="btn"><?php echo defined('YHI_APPT_TXT') ? YHI_APPT_TXT : 'Request An Appointment Today!'; ?></a>
-                            <a href="<?php echo defined('YHI_SHOP_URL') ? YHI_SHOP_URL : 'https://youhealit.standardprocess.com/'; ?>" target="_blank" class="btn"><?php echo defined('YHI_GET_SUPPLEMENTS') ? YHI_GET_SUPPLEMENTS : 'Get Your Gold-Standard Supplements!'; ?></a>
+                            <a href="<?php echo home_url('/appointments/'); ?>" class="btn">Request An Appointment Today!</a>
+                            <a href="<?php echo defined('YHI_SHOP_URL') ? YHI_SHOP_URL : 'https://youhealit.standardprocess.com/'; ?>" target="_blank" class="btn">Shop Now</a>
                         </div>
 
                         <!-- Main Navigation Menu -->

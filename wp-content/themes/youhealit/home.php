@@ -1,6 +1,6 @@
 <?php
 // File: /home.php
-// Purpose: Custom homepage template with video header, ACF repeater carousel, and animated split section
+// Purpose: Blog posts index page
 get_header(); ?>
 
 <?php
@@ -18,50 +18,60 @@ if ($alert_message): ?>
     <?php wp_nav_menu(['theme_location' => 'primary']); ?>
   </nav>
   <div class="header-buttons">
-    <a href="#" class="btn btn-red">Request an Appointment Today!</a>
+    <a href="<?php echo defined('YHI_APPT_URL') ? YHI_APPT_URL : 'https://youhealit.com/contact/'; ?>" class="btn btn-red">Request an Appointment Today!</a>
     <a href="#" class="btn btn-shop">Shop Now</a>
   </div>
 </header>
 
-<section class="video-header">
-  <video autoplay muted loop playsinline poster="<?php echo get_template_directory_uri(); ?>/images/video-fallback.jpg">
-    <source src="<?php echo get_template_directory_uri(); ?>/assets/video/placeholder.mp4" type="video/mp4">
-  </video>
-</section>
-
-<section class="carousel-wrapper">
-  <div class="carousel">
-    <?php if (have_rows('homepage_carousel')): ?>
-      <?php while (have_rows('homepage_carousel')): the_row(); ?>
-        <div class="carousel-item">
-          <img src="<?php the_sub_field('carousel_image'); ?>" alt="<?php the_sub_field('carousel_title'); ?>">
-          <h3><?php the_sub_field('carousel_title'); ?></h3>
-          <p><?php the_sub_field('carousel_text'); ?></p>
-          <a href="<?php the_sub_field('carousel_cta_link'); ?>" class="btn btn-cta">
-            <?php the_sub_field('carousel_cta_text'); ?>
-          </a>
-        </div>
-      <?php endwhile; ?>
-    <?php else: ?>
-      <p>No carousel items found.</p>
-    <?php endif; ?>
-  </div>
-  <div class="carousel-nav">
-    <button class="carousel-prev">&#10094;</button>
-    <button class="carousel-next">&#10095;</button>
-  </div>
-</section>
-
-<section class="split-section animated">
-  <div class="content-left">
-    <h2>Welcome To Health Center of Hillsborough</h2>
-    <p>Empowering natural healing, performance, and prevention. Let your body do what it was made to do.</p>
-  </div>
-  <div class="content-right">
-    <h3>Concussion Treatment & Recovery</h3>
-    <p>Discover our science-backed therapies and individualized programs.</p>
-    <a href="#" class="btn btn-red">Request an Appointment</a>
-  </div>
-</section>
+<div class="container">
+    <main class="blog-main">
+        <h1>Latest News & Updates</h1>
+        
+        <?php if (have_posts()) : ?>
+            <div class="posts-grid">
+                <?php while (have_posts()) : the_post(); ?>
+                    <article class="post-item">
+                        <?php if (has_post_thumbnail()) : ?>
+                            <div class="post-thumbnail">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('medium'); ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <div class="post-content">
+                            <h2 class="post-title">
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                            </h2>
+                            
+                            <div class="post-meta">
+                                <span class="post-date"><?php echo get_the_date(); ?></span>
+                                <span class="post-author">by <?php the_author(); ?></span>
+                            </div>
+                            
+                            <div class="post-excerpt">
+                                <?php the_excerpt(); ?>
+                            </div>
+                            
+                            <a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                <?php endwhile; ?>
+            </div>
+            
+            <div class="pagination">
+                <?php
+                the_posts_pagination(array(
+                    'prev_text' => '&laquo; Previous',
+                    'next_text' => 'Next &raquo;',
+                ));
+                ?>
+            </div>
+            
+        <?php else : ?>
+            <p>No posts found.</p>
+        <?php endif; ?>
+    </main>
+</div>
 
 <?php get_footer(); ?>

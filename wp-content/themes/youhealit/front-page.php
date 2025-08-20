@@ -1,11 +1,20 @@
 <?php get_header(); ?>
 
-<div class="video-header">
-  <video autoplay muted loop playsinline id="header-video">
-    <source src="<?php echo get_template_directory_uri(); ?>/assets/video/placeholder.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  
+<div id="page" class="homepage">
+
+  <div class="video-header">
+    <video autoplay muted loop playsinline id="header-video">
+      <source src="<?php echo get_template_directory_uri(); ?>/assets/video/placeholder.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay">
+      <div class="hero-content">
+        <span class="hero-subtitle">Chiropractor in Hillsborough, NC</span>
+        <h1 class="hero-title">We Welcome New Patients</h1>
+        <a href="/appointments/" class="btn btn-hero">Request An Appointment Today!</a>
+      </div>
+    </div>
+  </div>
   <!-- Carousel over the video -->
   <div class="carousel-wrapper insidehomepage">
     <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>

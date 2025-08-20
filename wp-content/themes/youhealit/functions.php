@@ -2,6 +2,15 @@
 
 require_once get_stylesheet_directory() . '/includes/services-loader.php';
 
+// Security: Disable XML-RPC
+add_filter('xmlrpc_enabled', '__return_false');
+
+// Remove XML-RPC pingback ping
+add_filter('wp_headers', function($headers) {
+    unset($headers['X-Pingback']);
+    return $headers;
+});
+
 // Theme Setup
 function youhealit_theme_setup() {
     add_theme_support('title-tag');
