@@ -8,26 +8,19 @@
       Your browser does not support the video tag.
     </video>
     <div class="video-overlay">
-      <div class="hero-content">
-        <span class="hero-subtitle">Chiropractor in Hillsborough, NC</span>
-        <h1 class="hero-title">We Welcome New Patients</h1>
-        <a href="/appointments/" class="btn btn-hero">Request An Appointment Today!</a>
-      </div>
-    </div>
-  </div>
-  <!-- Carousel over the video -->
-  <div class="carousel-wrapper insidehomepage">
-    <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
-    <div class="carousel" id="carousel">
-      <?php if (function_exists('have_rows') && have_rows('homepage_carousel')): ?>
-        <?php while (have_rows('homepage_carousel')): the_row(); ?>
-          <div class="carousel-item">
-            <?php if (get_sub_field('carousel_image')): ?>
-              <img src="<?php the_sub_field('carousel_image'); ?>" alt="<?php the_sub_field('carousel_title'); ?>">
-            <?php endif; ?>
-            <div class="content">
-              <h3><?php the_sub_field('carousel_title'); ?></h3>
-              <p><?php the_sub_field('carousel_text'); ?></p>
+      <!-- Carousel over the video -->
+      <div class="carousel-wrapper insidehomepage">
+        <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <div class="carousel" id="carousel">
+          <?php if (function_exists('have_rows') && have_rows('homepage_carousel')): ?>
+            <?php while (have_rows('homepage_carousel')): the_row(); ?>
+              <div class="carousel-item">
+                <?php if (get_sub_field('carousel_image')): ?>
+                  <img src="<?php the_sub_field('carousel_image'); ?>" alt="<?php the_sub_field('carousel_title'); ?>">
+                <?php endif; ?>
+                <div class="content">
+                  <h3><?php the_sub_field('carousel_title'); ?></h3>
+                  <p><?php the_sub_field('carousel_text'); ?></p>
               <?php if (get_sub_field('carousel_cta_link')): ?>
                 <a href="<?php the_sub_field('carousel_cta_link'); ?>" class="btn-cta">
                   <?php the_sub_field('carousel_cta_text') ?: 'Learn More'; ?>
