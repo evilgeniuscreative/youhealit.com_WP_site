@@ -73,7 +73,7 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
                                 <?php if (has_custom_logo()): ?>
                                     <?php the_custom_logo(); ?>
                                 <?php else: ?>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/09/logo-Photoroom-2.png" alt="<?php echo get_bloginfo('name'); ?>">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/logo-white.png" alt="<?php echo get_bloginfo('name'); ?>">
                                 <?php endif; ?>
                             </a>
                         </h1>
@@ -84,7 +84,7 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
                         <div>
                             <p>Call Us: <a href="tel:<?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?>"><?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?></a></p>
                             <a href="<?php echo home_url('/appointments/'); ?>" class="btn">Request An Appointment Today!</a>
-                            <a href="<?php echo defined('YHI_SHOP_URL') ? YHI_SHOP_URL : 'https://youhealit.standardprocess.com/'; ?>" target="_blank" class="btn">Shop Now</a>
+                            <a href="<?php echo defined('YHI_SHOP_URL') ? YHI_SHOP_URL : 'https://youhealit.standardprocess.com/'; ?>" target="_blank" class="btn"><?php echo defined('YHI_SHOP_TXT') ? YHI_SHOP_TXT : 'Shop Now'; ?></a>
                         </div>
 
                         <!-- Main Navigation Menu -->
