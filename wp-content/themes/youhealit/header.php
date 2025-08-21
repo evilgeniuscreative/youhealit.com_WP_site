@@ -17,9 +17,10 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
 </head>
 <body <?php body_class(); ?>>
 
+
 <!-- Header -->
 <header id="site-header" class="main-header regular_header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
-    <div class="header-spacer" style="height: 156px;"></div>
+    <!-- <div class="header-spacer" style="height: 156px;"></div> -->
 
     <div class="main-head-wrap">
         <!-- Top Header Bar -->

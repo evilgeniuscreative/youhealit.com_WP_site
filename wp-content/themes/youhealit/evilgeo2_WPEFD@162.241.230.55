@@ -1308,31 +1308,3 @@ p {
         display: none;
     }
 }
-/* EMERGENCY FIX */
-/* FORCE HOMEPAGE HEADER TRANSPARENCY - Add to bottom of style.css */
-body.home .main-head-wrap,
-body.home #header,
-body.home div#header,
-html body.home .main-head-wrap,
-html body.home #header {
-    background: transparent !important;
-    background-color: transparent !important;
-}
-
-/* Force homepage navigation text to be white */
-body.home .menu-item > a,
-body.home .secondary-navigation a,
-body.home .right-side-header p,
-body.home .right-side-header a {
-    color: white !important;
-}
-
-/* Make logo white on homepage */
-body.home #logo img {
-    filter: brightness(0) invert(1) !important;
-}
-
-/* Red alert bar should stay red */
-body.home .top-header {
-    background: var(--red-accent) !important;
-}
