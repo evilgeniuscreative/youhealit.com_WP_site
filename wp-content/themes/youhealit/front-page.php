@@ -1,15 +1,15 @@
 <?php get_header(); ?>
 
 <div id="page" class="homepage">
-
+  <div class="container-wide homepage-top-half">
   <div class="video-header">
     <video autoplay muted loop playsinline id="header-video">
       <source src="<?php echo get_template_directory_uri(); ?>/assets/video/placeholder.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div class="video-overlay">
+    <div class="video-overlay" data-note="Overlays the video for the carousel">
       <!-- Carousel over the video -->
-      <div class="carousel-wrapper insidehomepage">
+      <div id="carousel-wrapper" class="carousel-wrapper insidehomepage">
         <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
         <div class="carousel" id="carousel">
           <?php if (function_exists('have_rows') && have_rows('homepage_carousel')): ?>
@@ -67,9 +67,15 @@
     </div>
     <button class="carousel-nav carousel-next" onclick="moveCarousel(1)">&#10095;</button>
   </div>
+  <!-- end carousel -->
+    </div>
+  </div>
 </div>
+<!-- end video header -->
+<div class="container-wide  homepage-bottom-half">
 
-<main class="main-content">
+
+  <main class="main-content">
   <!-- Welcome Section -->
   <section class="welcome-section">
     <div class="split-section animated">
@@ -84,6 +90,7 @@
       </div>
     </div>
   </section>
+  <!-- end welcome section -->
 
   <!-- Red CTA Section -->
   <section class="cta-section">
@@ -98,6 +105,7 @@
       </div>
     </div>
   </section>
+  <!-- end red cta section -->
 
   <!-- Services Section -->
   <section class="services-section">
@@ -135,18 +143,28 @@
       <a href="#" class="btn btn-red">Read More</a>
     </div>
   </section>
+  <!-- End Services Section -->
 
   <!-- Map Section -->
   <?php get_template_part('template-parts/hch-map'); ?>
-
+<!-- end map section -->
  
-</main>
+  </main>
+</div>
 
+<!-- end homepage bottom half -->
+</div>
+<!-- end homepage -->
 <script>
 function moveCarousel(direction) {
   const carousel = document.getElementById('carousel');
   const scrollAmount = carousel.querySelector('.carousel-item').offsetWidth + 20;
   carousel.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+}
+function changeHeaderColor(){
+if(document.getElementById('header-video').getBoundingClientRect().top <=115 ){
+  document.getElementById('header-video').style.top = '115px';
+} 
 }
 </script>
 

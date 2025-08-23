@@ -18,7 +18,7 @@ if ($alert_message): ?>
     <?php wp_nav_menu(['theme_location' => 'primary']); ?>
   </nav>
   <div class="header-buttons">
-    <a href="<?php echo defined('YHI_APPT_URL') ? YHI_APPT_URL : 'https://youhealit.com/contact/'; ?>" class="btn btn-red">Request an Appointment Today!</a>
+    <a href="<?php // echo YHI_APPT_URL?>" class="btn btn-red">Request an Appointment Today!</a>
     <a href="#" class="btn btn-shop">Shop Now</a>
   </div>
 </header>

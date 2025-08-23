@@ -25,14 +25,14 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
     <div class="main-head-wrap">
         <!-- Top Header Bar -->
         <div class="top-header">
-            <p>Concussion research project here, <a href="<?php echo home_url('/concussion-treatment/'); ?>">check it out!</a></p>
+            <p>Concussion research project: <a href="<?php echo home_url('/concussion-treatment/'); ?>">take a look.</a>If you have or have had a concussion, please consider <a href="<?php echo home_url('/concussion-treatment/'); ?>">participating</a> in our research study.</p>
         </div>
 
         <!-- Upper Header Info Row -->
         <div id="regular-header">
             <div class="container-wide dm-flex">
                 <div class="dm-third phone-header">
-                    <p><i class="fa fa-phone-alt"></i><a href="tel:<?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?>"><?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?></a></p>
+                    <p><i class="fa fa-phone-alt"></i><a href="tel:<?php // echo YHI_PHONE  ?>"><?php // echo YHI_PHONE  ?></a></p>
                 </div>
                 <div class="dm-third address-header">
                     <p><i class="fa fa-map-marker-alt"></i><a href="https://maps.app.goo.gl/ap8WekMqJJTcSsjL8" target="_blank" rel="noreferrer noopener"> Our <strong> Hillsborough, NC </strong> Office </a></p>
@@ -83,9 +83,9 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
                     <!-- Right Side Header Info & Navigation -->
                     <div class="right-side-header">
                         <div>
-                            <p>Call Us: <a href="tel:<?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?>"><?php echo defined('YHI_PHONE') ? YHI_PHONE : '(919) 241-5032'; ?></a></p>
+                            <p>Call Us: <a href="tel:<?php // echo YHI_PHONE ?>"><?php // echo YHI_PHONE ?></a></p>
                             <a href="<?php echo home_url('/appointments/'); ?>" class="btn">Request An Appointment Today!</a>
-                            <a href="<?php echo defined('YHI_SHOP_URL') ? YHI_SHOP_URL : 'https://youhealit.standardprocess.com/'; ?>" target="_blank" class="btn"><?php echo defined('YHI_SHOP_TXT') ? YHI_SHOP_TXT : 'Shop Now'; ?></a>
+                            <a href="<?php // echo YHI_SHOP_URL ?>" target="_blank" class="btn"><?php // echo YHI_SHOP_TXT ?></a>
                         </div>
 
                         <!-- Main Navigation Menu -->

@@ -140,7 +140,7 @@ $service_description = $term->description;
           <h3 style="margin: 0 0 20px 0; font-size: 1.4rem;">Schedule Your <?php echo $service_name; ?> Appointment</h3>
           <p style="margin-bottom: 25px; font-size: 1.1rem;">Ready to experience the benefits of professional <?php echo strtolower($service_name); ?>?</p>
           <div style="display: flex; flex-direction: column; gap: 15px;">
-            <a href="tel:${YHI_PHONE}" class="btn" style="background: white; color: var(--red-accent); padding: 15px 25px;">Call ${YHI_PHONE}</a>
+            <a href="tel:<?php // echo YHI_PHONE ?>" class="btn" style="background: white; color: var(--red-accent); padding: 15px 25px;">Call <?php // echo YHI_PHONE ?></a>
             <a href="/contact" class="btn" style="background: transparent; color: white; border: 2px solid white; padding: 15px 25px;">Schedule Online</a>
           </div>
         </div>
@@ -203,8 +203,8 @@ $service_description = $term->description;
         Contact us today to schedule your consultation and discover how we can help you achieve your wellness goals.
       </p>
       <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-        <a href="tel:${YHI_PHONE}" class="btn" style="background: white; color: var(--red-accent); padding: 15px 30px; font-size: 1.1rem;">
-          Call ${YHI_PHONE}
+        <a href="tel:<?php // echo YHI_PHONE ?>" class="btn" style="background: white; color: var(--red-accent); padding: 15px 30px; font-size: 1.1rem;">
+          Call <?php // echo YHI_PHONE ?>
         </a>
         <a href="/contact" class="btn" style="background: transparent; color: white; border: 2px solid white; padding: 15px 30px; font-size: 1.1rem;">
           Schedule Consultation

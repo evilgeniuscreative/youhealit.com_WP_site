@@ -52,13 +52,13 @@ date(), bloginfo(), wp_footer()
         <p>Professional health and wellness services throughout North Carolina.</p>
         
         <div class="footer-contact">
-            <p><strong>Phone:</strong> <?php echo defined('YHI_PHONE')?></p>
+            <p><strong>Phone:</strong> <?php // echo YHI_PHONE ?></p>
             <p><strong>Email:</strong> info@youhealit.com</p>
         </div>
     </div>
+    <a href="<?php echo esc_url( home_url('/sitemap/') ); ?>">Sitemap</a>
 </footer>
 
 <?php wp_footer(); ?>
-<a href="<?php echo esc_url( home_url('/sitemap/') ); ?>">Sitemap</a>
 </body>
 </html>

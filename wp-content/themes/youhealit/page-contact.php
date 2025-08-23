@@ -30,7 +30,7 @@ get_header(); ?>
         <div class="contact-item" style="margin-bottom: 25px;">
           <h3 style="color: var(--primary-green); font-size: 1.2rem; margin-bottom: 10px;">📞 Phone</h3>
           <p style="color: var(--text-dark);">
-            <a href="tel:${YHI_PHONE}" style="color: var(--red-accent); text-decoration: none; font-size: 1.1rem; font-weight: 600;">${YHI_PHONE}</a>
+            <a href="tel:<?php // echo YHI_PHONE ?>" style="color: var(--red-accent); text-decoration: none; font-size: 1.1rem; font-weight: 600;"><?php // echo YHI_PHONE ?></a>
           </p>
         </div>
         
@@ -66,10 +66,10 @@ get_header(); ?>
       <h2 style="font-size: 2rem; margin-bottom: 20px; font-weight: 300;">Need Immediate Care?</h2>
       <p style="font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6;">
         For urgent health concerns or to schedule a same-day appointment, please call us directly at 
-        <a href="tel:${YHI_PHONE}" style="color: white; font-weight: bold; text-decoration: underline;">${YHI_PHONE}</a>
+        <a href="tel:<?php // echo YHI_PHONE ?>" style="color: white; font-weight: bold; text-decoration: underline;"><?php // echo YHI_PHONE ?></a>
       </p>
       <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-        <a href="tel:${YHI_PHONE}" class="btn" style="background: white; color: var(--red-accent); padding: 15px 25px;">Call Now</a>
+        <a href="tel:<?php // echo YHI_PHONE ?>" class="btn" style="background: white; color: var(--red-accent); padding: 15px 25px;">Call Now</a>
         <a href="#" class="btn" style="background: transparent; color: white; border: 2px solid white; padding: 15px 25px;">Request Appointment</a>
       </div>
     </div>

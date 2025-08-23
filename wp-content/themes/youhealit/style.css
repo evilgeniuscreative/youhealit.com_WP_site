@@ -133,19 +133,22 @@ p {
 
 .top-header {
     background: var(--red-accent);
-    color: #fff;
+    color: var(--text-dark);
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
     padding: 8px 20px;
-    font-size: 14px;
+    font-size: 18px;
+    min-height: 40px;
+    vertical-align: middle;
 }
 
 .top-header p {
     margin: 0;
+    color: var(--text-dark);
 }
 
 .top-header a {
-    color: #fff;
+    color: #fff !important;
     text-decoration: underline;
 }
 
@@ -172,7 +175,6 @@ p {
 }
 
 .dm-flex div {
-    -webkit-backface-visibility: hidden;
     animation-fill-mode: initial !important;
 }
 
@@ -336,7 +338,7 @@ p {
 }
 
 #logo img {
-    height: 60px;
+    height: 100px;
     width: auto;
 }
 
@@ -452,7 +454,7 @@ p {
 .menu-item > a {
     display: block;
     padding: 12px 15px;
-    color: #333;
+    color: #fff;
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
     font-weight: 600;
@@ -464,8 +466,7 @@ p {
 .menu-item.current > a,
 .current-menu-item > a,
 .current_page_item > a {
-    color: #2c5aa0;
-    background: rgba(44, 90, 160, 0.1);
+    background: var(--primary-green);
 }
 
 /* Homepage navigation text colors */
@@ -477,8 +478,8 @@ p {
 .home .menu-item.current > a,
 .home .current-menu-item > a,
 .home .current_page_item > a {
-    color: var(--primary-green);
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--primary-green);
+    color: white;
 }
 
 /* =============================================================================
@@ -489,9 +490,10 @@ p {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
+    background-color: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: 1px solid #e9ecef;
+    color: #333;
     min-width: 200px;
     list-style: none;
     margin: 0;
@@ -504,6 +506,7 @@ p {
 }
 
 .menu-item:hover .sub-menu {
+    color: #333;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -518,7 +521,7 @@ p {
 
 .sub-menu .menu-item {
     margin: 0;
-    border-bottom: 1px solid #f8f9fa;
+    border-bottom: 1px solid #ddd;
 }
 
 .sub-menu .menu-item:last-child {
@@ -526,16 +529,17 @@ p {
 }
 
 .sub-menu a {
+    text-align: left;
     padding: 10px 15px;
     font-weight: 500;
     font-size: 14px;
-    color: #333;
+    color: #333 !important;
     border-radius: 0;
 }
 
 .sub-menu a:hover {
-    background: #f8f9fa;
-    color: #2c5aa0;
+    background-color: var(--primary-green);
+    color: white;
 }
 
 /* Homepage dropdown overrides */
@@ -548,7 +552,7 @@ p {
 }
 
 .home .sub-menu a:hover {
-    background: var(--primary-green);
+    background-color: var(--primary-green);
     color: white;
 }
 
@@ -623,7 +627,7 @@ p {
     max-width: 1000px;
     margin: 0 auto;
     z-index: 2;
-    padding: 0 80px;
+    padding: 0 40px;
 }
 
 .carousel {
@@ -643,6 +647,7 @@ p {
 .carousel-item {
     min-width: 320px;
     max-width: 320px;
+    min-height: 375px;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 12px;
     overflow: hidden;
@@ -1308,8 +1313,8 @@ p {
         display: none;
     }
 }
-/* EMERGENCY FIX */
-/* FORCE HOMEPAGE HEADER TRANSPARENCY - Add to bottom of style.css */
+
+/* FORCE HOMEPAGE HEADER TRANSPARENCY */
 body.home .main-head-wrap,
 body.home #header,
 body.home div#header,
@@ -1324,7 +1329,7 @@ body.home .menu-item > a,
 body.home .secondary-navigation a,
 body.home .right-side-header p,
 body.home .right-side-header a {
-    color: white !important;
+    color: white;
 }
 
 /* Make logo white on homepage */

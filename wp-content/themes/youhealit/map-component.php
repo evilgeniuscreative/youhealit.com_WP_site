@@ -24,7 +24,7 @@ $letter = preg_match('/^[A-Z]$/', $letter) ? $letter : ($letter === '#' ? '#' : 
 
 // --- Aggressive cache: 30 days by default (filterable) ---
 $cache_suffix = $letter ?: 'all';
-$cache_key    = 'yhi_all_cities_onepage_v3_' . md5($CITY_TYPE . '|' . $NEIGH_TAX . '|' . $cache_suffix);
+$cache_key    = '//YHI_all_cities_onepage_v3_' . md5($CITY_TYPE . '|' . $NEIGH_TAX . '|' . $cache_suffix);
 
 // Any param other than 'letter' acts as a cache-buster (your requested "?anything=1")
 $param_keys     = array_keys($_GET);
@@ -231,7 +231,7 @@ ob_start();
 $html = ob_get_clean();
 
 // 30 days, filterable (minimum 6 hours safety)
-$ttl = (int) apply_filters('yhi_all_cities_cache_ttl', 30 * DAY_IN_SECONDS);
+$ttl = (int) apply_filters('//YHI_all_cities_cache_ttl', 30 * DAY_IN_SECONDS);
 set_transient($cache_key, $html, max(6 * HOUR_IN_SECONDS, $ttl));
 
 echo $html;

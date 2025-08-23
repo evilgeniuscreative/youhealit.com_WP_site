@@ -24,7 +24,7 @@ $letter_param = isset($_GET['letter']) ? strtoupper(substr(sanitize_text_field($
 $letter_param = preg_match('/^[A-Z]$/', $letter_param) ? $letter_param : ($letter_param === '#' ? '#' : '');
 
 // --- Aggressive cache: 30 days by default (filterable) ---
-$cache_key = 'yhi_all_cities_onepage_v6_all_' . md5($CITY_TYPE . '|' . $NEIGH_TAX);
+$cache_key = '//YHI_all_cities_onepage_v6_all_' . md5($CITY_TYPE . '|' . $NEIGH_TAX);
 
 // Any param (other than benign tracking and 'letter') acts as a cache-buster
 $param_keys     = array_keys($_GET);
@@ -219,7 +219,7 @@ ob_start();
 $html = ob_get_clean();
 
 // 30 days, filterable (minimum 6 hours safety)
-$ttl = (int) apply_filters('yhi_all_cities_cache_ttl', 30 * DAY_IN_SECONDS);
+$ttl = (int) apply_filters('//YHI_all_cities_cache_ttl', 30 * DAY_IN_SECONDS);
 set_transient($cache_key, $html, max(6 * HOUR_IN_SECONDS, $ttl));
 
 echo $html;

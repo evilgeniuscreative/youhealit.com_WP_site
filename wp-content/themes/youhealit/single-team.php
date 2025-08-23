@@ -35,7 +35,7 @@ get_header(); ?>
         <div class="team-contact" style="background: #f5f5f5; padding: 30px; border-radius: 8px; margin-top: 30px;">
           <h3 style="color: var(--red-accent); font-size: 1.3rem; margin-bottom: 20px;">Contact <?php echo get_the_title(); ?></h3>
           <p style="margin-bottom: 15px;">
-            <strong>Phone:</strong> <a href="tel:${YHI_PHONE}" style="color: var(--red-accent);">${YHI_PHONE}</a>
+            <strong>Phone:</strong> <a href="tel:<?php // echo YHI_PHONE ?>" style="color: var(--red-accent);"><?php // echo YHI_PHONE ?></a>
           </p>
           <p style="margin-bottom: 20px;">
             <strong>Email:</strong> <a href="mailto:info@youhealit.com" style="color: var(--red-accent);">info@youhealit.com</a>
@@ -126,8 +126,8 @@ get_header(); ?>
         Schedule your consultation today and take the first step toward better health and wellness.
       </p>
       <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-        <a href="tel:${YHI_PHONE}" class="btn" style="background: white; color: var(--red-accent); padding: 15px 30px; font-size: 1.1rem;">
-          Call ${YHI_PHONE}
+        <a href="tel:<?php // echo YHI_PHONE ?>" class="btn" style="background: white; color: var(--red-accent); padding: 15px 30px; font-size: 1.1rem;">
+          Call <?php // echo YHI_PHONE ?>
         </a>
         <a href="/contact" class="btn" style="background: transparent; color: white; border: 2px solid white; padding: 15px 30px; font-size: 1.1rem;">
           Schedule Online

@@ -27,38 +27,38 @@ add_action('after_setup_theme', 'youhealit_theme_setup');
 
 
 // Constants for email, business name, tagline, and address
-if(!defined('YHI_EMAIL')) {
-define('YHI_EMAIL', 'info@youhealit.com');
+if(!defined('//YHI_EMAIL')) {
+define('//YHI_EMAIL', 'info@youhealit.com');
 }
-if(!defined('YHI_BUSINESS_NAME')) {
-define('YHI_BUSINESS_NAME', 'YouHealIt - Wellness Center of the Triangle');
+if(!defined('//YHI_BUSINESS_NAME')) {
+define('//YHI_BUSINESS_NAME', 'YouHealIt - Wellness Center of the Triangle');
 }
-if(!defined('YHI_TAGLINE')) {
-define('YHI_TAGLINE', 'Professional health and wellness services throughout North Carolina');
+if(!defined('//YHI_TAGLINE')) {
+define('//YHI_TAGLINE', 'Professional health and wellness services throughout North Carolina');
 }
-if(!defined('YHI_ADDRESS')) {
-define('YHI_ADDRESS', 'North Carolina');
+if(!defined('//YHI_ADDRESS')) {
+define('//YHI_ADDRESS', 'North Carolina');
 }
 
 // Constants for phone and shop URL
-if (!defined('YHI_PHONE')) {
-    define('YHI_PHONE', '(919) 241-5032');
+if (!defined('//YHI_PHONE')) {
+    define('//YHI_PHONE', '(919) 241-5032');
 }
 
-if (!defined('YHI_SHOP_URL')) {
-    define('YHI_SHOP_URL', 'https://youhealit.standardprocess.com/');
+if (!defined('//YHI_SHOP_URL')) {
+    define('//YHI_SHOP_URL', 'https://youhealit.standardprocess.com/');
 }
 
-if(!defined('YHI_APPT_TXT')) {
-define('YHI_APPT_TXT', 'REQUEST AN APPOINTMENT TODAY');
+if(!defined('//YHI_APPT_TXT')) {
+define('//YHI_APPT_TXT', 'REQUEST AN APPOINTMENT TODAY');
 }
 
-if(!defined('YHI_GET_SUPPLEMENTS')) {
-define('YHI_GET_SUPPLEMENTS', 'GET YOUR GOLD-STANDARD SUPPLEMENTS!');
+if(!defined('//YHI_GET_SUPPLEMENTS')) {
+define('//YHI_GET_SUPPLEMENTS', 'GET YOUR GOLD-STANDARD SUPPLEMENTS!');
 }
 
-if(!defined('YHI_ADDRESS')) {
-define('YHI_ADDRESS', 'North Carolina');
+if(!defined('//YHI_ADDRESS')) {
+define('//YHI_ADDRESS', 'North Carolina');
 }
 
 /*
@@ -208,59 +208,6 @@ function youhealit_enqueue_scripts() {
     }
 }
 add_action('wp_enqueue_scripts', 'youhealit_enqueue_scripts');
-
-/*
-theme: youhealit
-youhealit/functions.php
-Add this below youhealit_fallback_menu() function, above youhealit_register_post_types() function, approx line 45
-Creates individual WordPress pages for each service with proper titles and slugs
-*/
-function youhealit_create_service_pages() {
-    $services = youhealit_get_services();
-    
-    if (empty($services)) {
-        return;
-    }
-    
-    $created_count = 0;
-    
-    foreach ($services as $service) {
-        $service_title = ucwords(str_replace('-', ' ', $service['name']));
-        $service_slug = sanitize_title($service_title);
-        
-        // Check if page already exists
-        $existing_page = get_page_by_path($service_slug);
-        
-        if (!$existing_page) {
-            // Create the page
-            $page_data = [
-                'post_title' => $service_title,
-                'post_name' => $service_slug,
-                'post_content' => '<h2>' . $service_title . '</h2>' . "\n\n" . 
-                                '<p>' . $service['description'] . '</p>' . "\n\n" .
-                                '<p>Contact us today to learn more about our ' . strtolower($service_title) . ' services and schedule your consultation.</p>' . "\n\n" .
-                                '<div style="text-align: center; margin: 30px 0;">' . "\n" .
-                                '<a href="/contact" class="btn btn-red">Schedule Consultation</a>' . "\n" .
-                                '</div>',
-                'post_status' => 'publish',
-                'post_type' => 'page',
-                'post_author' => 1,
-                'meta_input' => [
-                    'service_name' => $service['name'],
-                    'service_description' => $service['description']
-                ]
-            ];
-            
-            $page_id = wp_insert_post($page_data);
-            
-            if ($page_id && !is_wp_error($page_id)) {
-                $created_count++;
-            }
-        }
-    }
-    
-    return $created_count;
-}
 
 
 /*
@@ -2133,5 +2080,9 @@ function youhealit_populate_services_submenu($parent_menu_id) {
     // This would need additional logic to programmatically add menu items
     // For now, this serves as a reference for the menu structure
 }
+
+// Include menu integration functionality
+require_once get_template_directory() . '/includes/wordpress-menu-installation.php';
+
 
 ?>
