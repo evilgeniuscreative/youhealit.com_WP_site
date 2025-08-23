@@ -1,55 +1,194 @@
 <?php
-// Services Data - Extracted from functions.php
-// This file contains only the services array without WordPress dependencies
+// Services Data - Complete conversion with all 46 services
 return [
-    ['name' => 'accidents', 'description' => '<p>Comprehensive care for accident-related injuries. </p><p>Dr. Aaron has been treating car accident injuries for over 40 years, with a great track record of success. If you\'ve been hurt in a car accident, come in for treatment as soon as possible to minimize injuries and maximize healing.</p>'],
-    ['name' => 'acupuncture', 'description' => '<p>Acupuncture is older than China!</p>
+    'accidents' => [
+        'name' => 'Accidents',
+        'description' => '<p>Comprehensive care for accident-related injuries. </p><p>Dr. Aaron has been treating car accident injuries for over 40 years, with a great track record of success. If you\'ve been hurt in a car accident, come in for treatment as soon as possible to minimize injuries and maximize healing.</p>'
+    ],
+    'acupuncture' => [
+        'name' => 'Acupuncture',
+        'description' => '<p>Acupuncture is older than China!</p>
     <p>Acupuncture has been used for over 5000 years, apparently for pain relief and improved function.</p>
     <p>The Tyrolean Iceman, "Ötzi", is the well-preserved natural mummy of a man who lived about 5200 years ago during Copper Age Europeans. Ötzi had a total of 61 tattoos probably for pain relief treatments similar to acupressure or acupuncture. Although there is some evidence that China had acupuncture around then, this is at least 2,000 years before any proof of use in China, earlier then 1000 BCE. Amazingly, similar early tattoos have been found on mummies in Peru, Chile and Siberia! Photographs and drawings of this can be found at The Lancet Vol 354 September 18th 1999.</p>
-    <p>Traditional Chinese medicine acupuncture treatments</p>'],
-    ['name' => 'alternative medicine', 'description' => 'Natural healing methods and non-conventional treatments can often help where regular, or conventional medicine fails, using exercises, supplements, and other non-mainstream treatments.'],
-    ['name' => 'ankle pain', 'description' => '<p>Ankle sprain recovery and chronic pain management.</p><p>A sprain can be much more serious than it sounds. We\'re all accustomed to saying "It\'s just a sprain", but a sprain involves the actual tearing of a ligament. This can lead to chronic pain and other issues if not treated properly. As always, it\'s best to get treatment as soon as possible to prevent further damage.</p>'],
-    ['name' => 'arthritis', 'description' => '<p>Joint pain relief and arthritis management.</p><p>Arthritis is a common condition that affects millions of people worldwide. It can be caused by a variety of factors, including genetics, autoimune conditions,  age, and lifestyle. While there is no cure for arthritis, there are many treatments available both with traditional Western Medicine as well as alternative treatments from Chiripractic, Acupuncture, and other modalities to help manage symptoms and improve quality of life.</p>'],
-    ['name' => 'back pain', 'description' => '<p>Comprehensive back pain treatment and spinal care.</p><p>Back pain seems to affect most people at some point in their lives, from sports injuries to car accidents, and the dessication (drying out) of spinal discs as we age. This, of course, is one of the things that Chiropractors excel at treating uning modalites from spinal manipulation, to ultrasound, laser, electrical stimulation, and more.</p>'],
-    ['name' => 'car accidents', 'description' => '<p>Specialized care for auto accident injuries and recovery.</p><p>Car accidents can be traumatic and lead to chronic pain and other issues if not treated properly and quickly.</p><p>Unfortunately, most of us have been in car accidents at some point in our lives, and many of us have not received proper treatment.</p><p>As Chiropractors, we\'ve seen the results of many a car accident and the importance and effeciveness of proper treatment.</p>'],
-    ['name' => 'chiropractic', 'description' => '<p>Professional chiropractic care for spinal health and alignment. If you hold up a fishing net with both hands, then drop it out of one, the entire net changes its shape.</p><p>It\'s now hanging, where before it was taut. You can apply this analogy to any part of your body being out of alignment.</p><p>We need to restore the proper mechanics to bring it back to its intended state. As chiropractors, we\'ve studied the mechanics of your body and how each part works together.</p><p>In rebalancing your body, your physical, emotional and spiritual self can experience the highest form of healing. We\'ll supply you with the solutions that you need. Once your health begins to improve, we\'ll give you the information and advice you need to maintain it in the long term.</p>'],
-    ['name' => 'concussion', 'description' => '<p>Specialized concussion treatment and recovery protocols.</p><p>Concussions are a type of traumatic brain injury (TBI) that can occur from a blow to the head or neck. They can be caused by falls, car accidents, sports injuries, or other physical trauma.</p><p>Symptoms can include naseua, vertigo, dizziness, lack of balance, headaches, drowsiness, and vision problems.</p><p>Concussions can be very serious and require proper treatment to prevent long-term, possibly very severe complications.</p>'],
-    ['name' => 'cranial sacral therapy', 'description' => 'Your head is a critical part of your body\'s functionality, housing your brain and numerous essential structures. When you experience head pain or injuries, it can significantly impact your quality of life. At Health Center of Hillsborough, we offer specialized chiropractic care to address cranium-related conditions, promoting recovery and long-term wellness.'],
-    ['name' => 'elbow pain', 'description' => '<p>Care for tennis elbow, golfer\'s elbow, and other conditions are things we deal with on a regular basis. From using the correct types of orthotics, taping, or retraining for proper movement to avoid these injuries in the future, we can help.</p>'],
-    ['name' => 'foot pain', 'description' => '<p>As the foundation of your entire body\'s balance, posture, and alignment, it\'s surprising how much difference proper foot care and customized-to-you orthotics can make.</p><p>Here at the Health Center, not only do we offer a wide range of treatments, for conditions such as plantar fascitis, ankle, knee, and joint pain, but also offer you the finest, first-rate orthotic shoe inserts that can literally be life-changing. Just ask our patients.</p><p>Think of a minor difference between your foot alignment or leg length, imagine how that small difference can affect proper alignment more greatly the further and further you go up. Like a snowball, a tiny change at your feet can turn into BIG pain in your back, neck, or other surprising places. Chaning your body\'s alignment from the bottom up can get rid of chronic pain at a whole different level.</p>'],
-    ['name' => 'gold standard supplements', 'description' => '<p>Here at the Health Center, we offer the Gold-Standard of supplements and nutritional assistance that in not only researched to the highest level of any supplements on the market, but are based on real science, real testing, and real results. </p><p>From aiding with concussion recovery, arthritis, joint pain, and chronic pain, to helping with digestion, weight loss, overall health and wellness, we offer a wide range of supplements selected specifically to give your body the support it needs to be at its best.</p>'],
-    ['name' => 'hand pain', 'description' => '<p>Ouch! Carpal tunnel, arthritis, and hand injuries can be painful and scary. There are so many ways to injure or have conditions with your hands, some of which don\'t even begin with your hands, that can cause numbness, weakness, loss of control, and pain. </p><p>From using the correct types of orthotics, taping, or other treatments can help you get back to your daily activities, and strength.</p>'],
-    ['name' => 'head pain and headaches', 'description' => '<p>Treatment for various types of head and facial pain</p><p>Head pain, headaches, migraines, and other conditions can not only be debilitating, but can be indicators of something more serious. Here at the Health Center, we know when we can help, and when you need medical help. Thats why here, you\'re always in safe hands.'],
-    ['name' => 'herniated disc', 'description' => '<p>If you\'ve ever had a bulging or herniated disk, you will never forget how painful they can be.</p><p>Non-surgical treatment for disc herniation and bulging discs can often be far more effective and less painful than surgery.</p><p>A combination of medical and chirpractic modalities can be very effective in treatment.</p><p>With age, especially, our discs lose some of their hydration and plasticity, leading them to become more brittle, and sucseptible to herniation and other damage. While treatments such as steroid injections, and other conventional treatments can be quite effective, especially in the short-term, they can also have serious short and long-term side effects (moon face, weight gain, mood changes, immunosuppression, skin changes, insomnia, stomach upset ... <a href="https://www.ncbi.nlm.nih.gov/books/NBK531462/" target="_blank">and many more</a>).</p><p>Herniated discs can be often treated with chiropractic care, phyical therapy, ice, heat, massage, and other modalities to help reduce pain and inflammation, and improve function and long-term healing.</p>'],
-    ['name' => 'hip pain', 'description' => '<p>Hip joint therapy and pain management solutions</p><p>Hip pain is something else. It affects nearly everything you do, every time you move. It can have many causes, from artritis and sprains or straings, to more serious degenerative diseases.</p><p>Regardless of the cause, there are many things that your chiropractor can do to relieve pain, adjust position, relax pulled muscles and ligaments, and help you strengthen so that chances of recurrance are reduced.</p>'],
-    ['name' => 'holistic health', 'description' => 'Comprehensive approach to wellness treating the whole person'],
-    ['name' => 'hypnotherapy', 'description' => 'Hypnosis is an over 150 year-old system for numerous difficult-to-address issues such as weight loss, smoking, stress relief, addiction smoking cessation, numerous behaviors an individual wants to change, and much more.'],
-    ['name' => 'injuries', 'description' => 'General injury treatment and recovery services'],
-    ['name' => 'knee pain', 'description' => 'Comprehensive knee injury treatment and rehabilitation'],
-    ['name' => 'lower back pain', 'description' => 'Targeted treatment for lumbar spine conditions'],
-    ['name' => 'massage', 'description' => 'Therapeutic massage therapy for muscle tension and relaxation'],
-    ['name' => 'middle back pain', 'description' => 'Mid-thoracic spine treatment and pain relief'],
-    ['name' => 'migraine', 'description' => 'Expert care for migraine prevention and management'],
-    ['name' => 'neck pain', 'description' => 'Targeted treatment for neck pain and stiffness'],
-    ['name' => 'nutrition', 'description' => 'Personalized nutrition counseling and dietary planning'],
-    ['name' => 'orthotics', 'description' => 'Custom orthotic devices for foot and gait correction'],
-    ['name' => 'osteoporosis', 'description' => 'Bone density improvement and fracture prevention'],
-    ['name' => 'pain management', 'description' => 'Multi-modal approach to chronic pain relief'],
-    ['name' => 'personal injury', 'description' => 'Recovery care for personal injury cases'],
-    ['name' => 'qigong', 'description' => 'Qigong exercises for stress relief and wellness. Dr. Aaron teaches Yoga and QiGong individually for the benefit of each patient; determining together what aspect of each is most helpful in the patient\'s healing.'],
-    ['name' => 'rehabilitation', 'description' => 'Physical rehabilitation and recovery programs'],
-    ['name' => 'safe weight', 'description' => 'Safe and effective weight management programs'],
-    ['name' => 'shoulder pain', 'description' => 'Treatment for shoulder injuries and mobility issues'],
-    ['name' => 'sports injuries', 'description' => 'Specialized care for athletic injuries and performance recovery'],
-    ['name' => 'sports medicine', 'description' => 'Athletic performance optimization and injury prevention'],
-    ['name' => 'traumatic brain injury', 'description' => 'Traumatic brain injury (TBI)åtreatment and support'],
-    ['name' => 'upper back pain', 'description' => 'Thoracic spine care and upper back relief'],
-    ['name' => 'weight issues', 'description' => 'Comprehensive approach to weight-related health concerns'],
-    ['name' => 'weight loss', 'description' => 'Medically supervised weight loss programs'],
-    ['name' => 'weight loss products', 'description' => 'Professional-grade weight loss supplements and tools'],
-    ['name' => 'weight management', 'description' => 'Long-term weight maintenance and lifestyle coaching'],
-    ['name' => 'wellness', 'description' => 'Comprehensive wellness programs for optimal health'],
-    ['name' => 'whiplash', 'description' => 'Whiplash injury treatment and neck rehabilitation'],
-    ['name' => 'wrist pain', 'description' => 'Treatment for repetitive strain and wrist injuries']
+    <p>Traditional Chinese medicine acupuncture treatments</p>'
+    ],
+    'alternative-medicine' => [
+        'name' => 'Alternative Medicine',
+        'description' => 'Natural healing methods and non-conventional treatments can often help where regular, or conventional medicine fails, using exercises, supplements, and other non-mainstream treatments.'
+    ],
+    'ankle-pain' => [
+        'name' => 'Ankle Pain',
+        'description' => '<p>Ankle sprain recovery and chronic pain management.</p><p>A sprain can be much more serious than it sounds. We\'re all accustomed to saying "It\'s just a sprain", but a sprain involves the actual tearing of a ligament. This can lead to chronic pain and other issues if not treated properly. As always, it\'s best to get treatment as soon as possible to prevent further damage.</p>'
+    ],
+    'arthritis' => [
+        'name' => 'Arthritis',
+        'description' => '<p>Joint pain relief and arthritis management.</p><p>Arthritis is a common condition that affects millions of people worldwide. It can be caused by a variety of factors, including genetics, autoimune conditions,  age, and lifestyle. While there is no cure for arthritis, there are many treatments available both with traditional Western Medicine as well as alternative treatments from Chiripractic, Acupuncture, and other modalities to help manage symptoms and improve quality of life.</p>'
+    ],
+    'back-pain' => [
+        'name' => 'Back Pain',
+        'description' => '<p>Comprehensive back pain treatment and spinal care.</p><p>Back pain seems to affect most people at some point in their lives, from sports injuries to car accidents, and the dessication (drying out) of spinal discs as we age. This, of course, is one of the things that Chiropractors excel at treating uning modalites from spinal manipulation, to ultrasound, laser, electrical stimulation, and more.</p>'
+    ],
+    'car-accidents' => [
+        'name' => 'Car Accidents',
+        'description' => '<p>Specialized care for auto accident injuries and recovery.</p><p>Car accidents can be traumatic and lead to chronic pain and other issues if not treated properly and quickly.</p><p>Unfortunately, most of us have been in car accidents at some point in our lives, and many of us have not received proper treatment.</p><p>As Chiropractors, we\'ve seen the results of many a car accident and the importance and effeciveness of proper treatment.</p>'
+    ],
+    'chiropractic' => [
+        'name' => 'Chiropractic',
+        'description' => '<p>Professional chiropractic care for spinal health and alignment. If you hold up a fishing net with both hands, then drop it out of one, the entire net changes its shape.</p><p>It\'s now hanging, where before it was taut. You can apply this analogy to any part of your body being out of alignment.</p><p>We need to restore the proper mechanics to bring it back to its intended state. As chiropractors, we\'ve studied the mechanics of your body and how each part works together.</p><p>In rebalancing your body, your physical, emotional and spiritual self can experience the highest form of healing. We\'ll supply you with the solutions that you need. Once your health begins to improve, we\'ll give you the information and advice you need to maintain it in the long term.</p>'
+    ],
+    'concussion' => [
+        'name' => 'Concussion',
+        'description' => '<p>Specialized concussion treatment and recovery protocols.</p><p>Concussions are a type of traumatic brain injury (TBI) that can occur from a blow to the head or neck. They can be caused by falls, car accidents, sports injuries, or other physical trauma.</p><p>Symptoms can include naseua, vertigo, dizziness, lack of balance, headaches, drowsiness, and vision problems.</p><p>Concussions can be very serious and require proper treatment to prevent long-term, possibly very severe complications.</p>'
+    ],
+    'cranial-sacral-therapy' => [
+        'name' => 'Cranial Sacral Therapy',
+        'description' => 'Your head is a critical part of your body\'s functionality, housing your brain and numerous essential structures. When you experience head pain or injuries, it can significantly impact your quality of life. At Health Center of Hillsborough, we offer specialized chiropractic care to address cranium-related conditions, promoting recovery and long-term wellness.'
+    ],
+    'elbow-pain' => [
+        'name' => 'Elbow Pain',
+        'description' => '<p>Care for tennis elbow, golfer\'s elbow, and other conditions are things we deal with on a regular basis. From using the correct types of orthotics, taping, or retraining for proper movement to avoid these injuries in the future, we can help.</p>'
+    ],
+    'foot-pain' => [
+        'name' => 'Foot Pain',
+        'description' => '<p>As the foundation of your entire body\'s balance, posture, and alignment, it\'s surprising how much difference proper foot care and customized-to-you orthotics can make.</p><p>Here at the Health Center, not only do we offer a wide range of treatments, for conditions such as plantar fascitis, ankle, knee, and joint pain, but also offer you the finest, first-rate orthotic shoe inserts that can literally be life-changing. Just ask our patients.</p><p>Think of a minor difference between your foot alignment or leg length, imagine how that small difference can affect proper alignment more greatly the further and further you go up. Like a snowball, a tiny change at your feet can turn into BIG pain in your back, neck, or other surprising places. Chaning your body\'s alignment from the bottom up can get rid of chronic pain at a whole different level.</p>'
+    ],
+    'gold-standard-supplements' => [
+        'name' => 'Gold Standard Supplements',
+        'description' => '<p>Here at the Health Center, we offer the Gold-Standard of supplements and nutritional assistance that in not only researched to the highest level of any supplements on the market, but are based on real science, real testing, and real results. </p><p>From aiding with concussion recovery, arthritis, joint pain, and chronic pain, to helping with digestion, weight loss, overall health and wellness, we offer a wide range of supplements selected specifically to give your body the support it needs to be at its best.</p>'
+    ],
+    'hand-pain' => [
+        'name' => 'Hand Pain',
+        'description' => '<p>Ouch! Carpal tunnel, arthritis, and hand injuries can be painful and scary. There are so many ways to injure or have conditions with your hands, some of which don\'t even begin with your hands, that can cause numbness, weakness, loss of control, and pain. </p><p>From using the correct types of orthotics, taping, or other treatments can help you get back to your daily activities, and strength.</p>'
+    ],
+    'head-pain-and-headaches' => [
+        'name' => 'Head Pain and Headaches',
+        'description' => '<p>Treatment for various types of head and facial pain</p><p>Head pain, headaches, migraines, and other conditions can not only be debilitating, but can be indicators of something more serious. Here at the Health Center, we know when we can help, and when you need medical help. Thats why here, you\'re always in safe hands.'
+    ],
+    'herniated-disc' => [
+        'name' => 'Herniated Disc',
+        'description' => '<p>If you\'ve ever had a bulging or herniated disk, you will never forget how painful they can be.</p><p>Non-surgical treatment for disc herniation and bulging discs can often be far more effective and less painful than surgery.</p><p>A combination of medical and chirpractic modalities can be very effective in treatment.</p><p>With age, especially, our discs lose some of their hydration and plasticity, leading them to become more brittle, and sucseptible to herniation and other damage. While treatments such as steroid injections, and other conventional treatments can be quite effective, especially in the short-term, they can also have serious short and long-term side effects (moon face, weight gain, mood changes, immunosuppression, skin changes, insomnia, stomach upset ... <a href="https://www.ncbi.nlm.nih.gov/books/NBK531462/" target="_blank">and many more</a>).</p><p>Herniated discs can be often treated with chiropractic care, phyical therapy, ice, heat, massage, and other modalities to help reduce pain and inflammation, and improve function and long-term healing.</p>'
+    ],
+    'hip-pain' => [
+        'name' => 'Hip Pain',
+        'description' => '<p>Hip joint therapy and pain management solutions</p><p>Hip pain is something else. It affects nearly everything you do, every time you move. It can have many causes, from artritis and sprains or straings, to more serious degenerative diseases.</p><p>Regardless of the cause, there are many things that your chiropractor can do to relieve pain, adjust position, relax pulled muscles and ligaments, and help you strengthen so that chances of recurrance are reduced.</p>'
+    ],
+    'holistic-health' => [
+        'name' => 'Holistic Health',
+        'description' => 'Comprehensive approach to wellness treating the whole person'
+    ],
+    'hypnotherapy' => [
+        'name' => 'Hypnotherapy',
+        'description' => 'Hypnosis is an over 150 year-old system for numerous difficult-to-address issues such as weight loss, smoking, stress relief, addiction smoking cessation, numerous behaviors an individual wants to change, and much more.'
+    ],
+    'injuries' => [
+        'name' => 'Injuries',
+        'description' => 'General injury treatment and recovery services'
+    ],
+    'knee-pain' => [
+        'name' => 'Knee Pain',
+        'description' => 'Comprehensive knee injury treatment and rehabilitation'
+    ],
+    'lower-back-pain' => [
+        'name' => 'Lower Back Pain',
+        'description' => 'Targeted treatment for lumbar spine conditions'
+    ],
+    'massage' => [
+        'name' => 'Massage',
+        'description' => 'Therapeutic massage therapy for muscle tension and relaxation'
+    ],
+    'middle-back-pain' => [
+        'name' => 'Middle Back Pain',
+        'description' => 'Mid-thoracic spine treatment and pain relief'
+    ],
+    'migraine' => [
+        'name' => 'Migraine',
+        'description' => 'Expert care for migraine prevention and management'
+    ],
+    'neck-pain' => [
+        'name' => 'Neck Pain',
+        'description' => 'Targeted treatment for neck pain and stiffness'
+    ],
+    'nutrition' => [
+        'name' => 'Nutrition',
+        'description' => 'Personalized nutrition counseling and dietary planning'
+    ],
+    'orthotics' => [
+        'name' => 'Orthotics',
+        'description' => 'Custom orthotic devices for foot and gait correction'
+    ],
+    'osteoporosis' => [
+        'name' => 'Osteoporosis',
+        'description' => 'Bone density improvement and fracture prevention'
+    ],
+    'pain-management' => [
+        'name' => 'Pain Management',
+        'description' => 'Multi-modal approach to chronic pain relief'
+    ],
+    'personal-injury' => [
+        'name' => 'Personal Injury',
+        'description' => 'Recovery care for personal injury cases'
+    ],
+    'qigong' => [
+        'name' => 'QiGong',
+        'description' => 'Qigong exercises for stress relief and wellness. Dr. Aaron teaches Yoga and QiGong individually for the benefit of each patient; determining together what aspect of each is most helpful in the patient\'s healing.'
+    ],
+    'rehabilitation' => [
+        'name' => 'Rehabilitation',
+        'description' => 'Physical rehabilitation and recovery programs'
+    ],
+    'safe-weight' => [
+        'name' => 'Safe Weight',
+        'description' => 'Safe and effective weight management programs'
+    ],
+    'shoulder-pain' => [
+        'name' => 'Shoulder Pain',
+        'description' => 'Treatment for shoulder injuries and mobility issues'
+    ],
+    'sports-injuries' => [
+        'name' => 'Sports Injuries',
+        'description' => 'Specialized care for athletic injuries and performance recovery'
+    ],
+    'sports-medicine' => [
+        'name' => 'Sports Medicine',
+        'description' => 'Athletic performance optimization and injury prevention'
+    ],
+    'traumatic-brain-injury' => [
+        'name' => 'Traumatic Brain Injury',
+        'description' => 'Traumatic brain injury (TBI) treatment and support'
+    ],
+    'upper-back-pain' => [
+        'name' => 'Upper Back Pain',
+        'description' => 'Thoracic spine care and upper back relief'
+    ],
+    'weight-issues' => [
+        'name' => 'Weight Issues',
+        'description' => 'Comprehensive approach to weight-related health concerns'
+    ],
+    'weight-loss' => [
+        'name' => 'Weight Loss',
+        'description' => 'Medically supervised weight loss programs'
+    ],
+    'weight-loss-products' => [
+        'name' => 'Weight Loss Products',
+        'description' => 'Professional-grade weight loss supplements and tools'
+    ],
+    'weight-management' => [
+        'name' => 'Weight Management',
+        'description' => 'Long-term weight maintenance and lifestyle coaching'
+    ],
+    'wellness' => [
+        'name' => 'Wellness',
+        'description' => 'Comprehensive wellness programs for optimal health'
+    ],
+    'whiplash' => [
+        'name' => 'Whiplash',
+        'description' => 'Whiplash injury treatment and neck rehabilitation'
+    ],
+    'wrist-pain' => [
+        'name' => 'Wrist Pain',
+        'description' => 'Treatment for repetitive strain and wrist injuries'
+    ]
 ];
 
+// Total services: 46 (complete list with all services from original file)
+?>

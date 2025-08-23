@@ -84,8 +84,8 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
                     <div class="right-side-header">
                         <div>
                             <p>Call Us: <a href="tel:<?php // echo YHI_PHONE ?>"><?php // echo YHI_PHONE ?></a></p>
-                            <a href="<?php echo home_url('/appointments/'); ?>" class="btn">Request An Appointment Today!</a>
-                            <a href="<?php // echo YHI_SHOP_URL ?>" target="_blank" class="btn"><?php // echo YHI_SHOP_TXT ?></a>
+                            <a href="<?php echo home_url('/appointments/'); ?>" class="btn"><?php echo YHI_APPT_TXT ?></a>
+                            <a href="<?php  //echo YHI_SHOP_URL ?>" target="_blank" class="btn"><?php echo YHI_SHOP_TXT ?></a>
                         </div>
 
                         <!-- Main Navigation Menu -->

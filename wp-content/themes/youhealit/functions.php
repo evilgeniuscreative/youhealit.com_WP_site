@@ -27,38 +27,38 @@ add_action('after_setup_theme', 'youhealit_theme_setup');
 
 
 // Constants for email, business name, tagline, and address
-if(!defined('//YHI_EMAIL')) {
-define('//YHI_EMAIL', 'info@youhealit.com');
+if(!defined('YHI_EMAIL')) {
+define('YHI_EMAIL', 'info@youhealit.com');
 }
-if(!defined('//YHI_BUSINESS_NAME')) {
-define('//YHI_BUSINESS_NAME', 'YouHealIt - Wellness Center of the Triangle');
+if(!defined('YHI_BUSINESS_NAME')) {
+define('YHI_BUSINESS_NAME', 'YouHealIt - Wellness Center of the Triangle');
 }
-if(!defined('//YHI_TAGLINE')) {
-define('//YHI_TAGLINE', 'Professional health and wellness services throughout North Carolina');
+if(!defined('YHI_TAGLINE')) {
+define('YHI_TAGLINE', 'Professional health and wellness services throughout North Carolina');
 }
-if(!defined('//YHI_ADDRESS')) {
-define('//YHI_ADDRESS', 'North Carolina');
+if(!defined('YHI_ADDRESS')) {
+define('YHI_ADDRESS', 'North Carolina');
 }
 
 // Constants for phone and shop URL
-if (!defined('//YHI_PHONE')) {
-    define('//YHI_PHONE', '(919) 241-5032');
+if (!defined('YHI_PHONE')) {
+    define('YHI_PHONE', '(919) 241-5032');
 }
 
-if (!defined('//YHI_SHOP_URL')) {
-    define('//YHI_SHOP_URL', 'https://youhealit.standardprocess.com/');
+if (!defined('YHI_SHOP_URL')) {
+    define('YHI_SHOP_URL', 'https://youhealit.standardprocess.com/');
 }
 
-if(!defined('//YHI_APPT_TXT')) {
-define('//YHI_APPT_TXT', 'REQUEST AN APPOINTMENT TODAY');
+if(!defined('YHI_APPT_TXT')) {
+define('YHI_APPT_TXT', 'Request An Appointment Today!');
 }
 
-if(!defined('//YHI_GET_SUPPLEMENTS')) {
-define('//YHI_GET_SUPPLEMENTS', 'GET YOUR GOLD-STANDARD SUPPLEMENTS!');
+if(!defined('YHI_SHOP_TXT')) {
+define('YHI_SHOP_TXT', 'Get your gold-standard supplements!');
 }
 
-if(!defined('//YHI_ADDRESS')) {
-define('//YHI_ADDRESS', 'North Carolina');
+if(!defined('YHI_ADDRESS')) {
+define('YHI_ADDRESS', 'North Carolina');
 }
 
 /*
@@ -1908,7 +1908,7 @@ add_action('wp_enqueue_scripts', 'youhealit_enqueue_assets', 20);
 
 function get_service_names() {
     $services = youhealit_get_services();
-    return array_column($services, 'name');
+    return array_column(array_values($services), 'name');
 }
 
 // If that debug helper was added earlier, kill it.
@@ -2022,67 +2022,7 @@ function youhealit_add_services_to_menu($menu_id, $menu_item_db_id, $args) {
 }
 add_action('wp_update_nav_menu_item', 'youhealit_add_services_to_menu', 10, 3);
 
-// Function to populate Services submenu
-function youhealit_populate_services_submenu($parent_menu_id) {
-    // Priority services (these appear first)
-    $priority_services = [
-        'Chiropractic' => '/chiropractic-care/',
-        'Massage Therapy' => '/massage-therapy/',
-        'Acupuncture' => '/acupuncture/',
-        'Integrated Healthcare' => '/integrated-healthcare/',
-        'Weight Loss' => '/weight-loss/'
-    ];
-    
-    // All other services (alphabetical)
-    $other_services = [
-        'ADHD Treatment' => '/adhd-treatment/',
-        'Addiction Counseling' => '/addiction-counseling/',
-        'Alternative Medicine' => '/alternative-medicine/',
-        'Anxiety Treatment' => '/anxiety-treatment/',
-        'Arthritis Treatment' => '/arthritis-treatment/',
-        'Autism Support' => '/autism-support/',
-        'Back Pain Relief' => '/back-pain-relief/',
-        'Chronic Pain Management' => '/chronic-pain-management/',
-        'Cold Laser' => '/cold-laser/',
-        'Concussion Treatment' => '/concussion-treatment/',
-        'Cranium' => '/cranium/',
-        'Detox Programs' => '/detox-programs/',
-        'Fibromyalgia Treatment' => '/fibromyalgia-treatment/',
-        'Foot Care' => '/foot-care/',
-        'Geriatric Care' => '/geriatric-care/',
-        'Headache Treatment' => '/headache-treatment/',
-        'Hormone Therapy' => '/hormone-therapy/',
-        'Hypnotherapy' => '/hypnotherapy/',
-        'Learning Disabilities' => '/learning-disabilities/',
-        'Meditation' => '/meditation/',
-        'Men\'s Health' => '/mens-health/',
-        'Microbiome Test Kit' => '/microbiome-test-kit/',
-        'Neck Pain Treatment' => '/neck-pain-treatment/',
-        'Nutritional Counseling' => '/nutritional-counseling/',
-        'Occupational Therapy' => '/occupational-therapy/',
-        'Pain Management' => '/pain-management/',
-        'Pediatric Therapy' => '/pediatric-therapy/',
-        'Physical Therapy' => '/physical-therapy/',
-        'Postpartum Care' => '/postpartum-care/',
-        'Prenatal Care' => '/prenatal-care/',
-        'PTSD Therapy' => '/ptsd-therapy/',
-        'Rehabilitation' => '/rehabilitation/',
-        'Sleep Therapy' => '/sleep-therapy/',
-        'Soul Integration' => '/soul-integration/',
-        'Sports Medicine' => '/sports-medicine/',
-        'Stress Management' => '/stress-management/',
-        'Wellness Coaching' => '/wellness-coaching/',
-        'Women\'s Health' => '/womens-health/',
-        'Yoga and QiGong' => '/yoga-and-qigong/',
-        'Yoga Therapy' => '/yoga-therapy/'
-    ];
-    
-    // This would need additional logic to programmatically add menu items
-    // For now, this serves as a reference for the menu structure
-}
 
-// Include menu integration functionality
-require_once get_template_directory() . '/includes/wordpress-menu-installation.php';
 
 
 ?>
