@@ -25,7 +25,7 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
     <div class="main-head-wrap">
         <!-- Top Header Bar -->
         <div class="top-header">
-            <p>Concussion research project: <a href="<?php echo home_url('/concussion-treatment/'); ?>">take a look.</a>If you have or have had a concussion, please consider <a href="<?php echo home_url('/concussion-treatment/'); ?>">participating</a> in our research study.</p>
+            <p>Concussion research project: <a href="<?php echo home_url('/concussion-treatment/'); ?>">take a look.</a> If you have or have had a concussion, please consider <a href="<?php echo home_url('/concussion-treatment/'); ?>">participating</a> in our research study.</p>
         </div>
 
         <!-- Upper Header Info Row -->

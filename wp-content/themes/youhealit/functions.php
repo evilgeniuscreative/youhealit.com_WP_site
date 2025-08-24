@@ -1,5 +1,8 @@
 <?php
-
+// Manual ACF loading to bypass activation issues
+if (file_exists(WP_PLUGIN_DIR . '/advanced-custom-fields/acf.php') && !class_exists('ACF')) {
+    include_once(WP_PLUGIN_DIR . '/advanced-custom-fields/acf.php');
+}
 require_once get_stylesheet_directory() . '/includes/services-loader.php';
 
 // Security: Disable XML-RPC
