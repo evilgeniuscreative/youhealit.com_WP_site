@@ -161,11 +161,7 @@ function moveCarousel(direction) {
   const scrollAmount = carousel.querySelector('.carousel-item').offsetWidth + 20;
   carousel.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
 }
-function changeHeaderColor(){
-if(document.getElementById('header-video').getBoundingClientRect().top <=115 ){
-  document.getElementById('header-video').style.top = '115px';
-} 
-}
+
 </script>
 
 <?php get_footer(); ?>

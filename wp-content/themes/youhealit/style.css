@@ -287,6 +287,7 @@ p {
     margin: 0;
     padding: 10px 8px;
     background: #fff; /* White background for all pages except homepage */
+    transition: all 0.3s ease;
 }
 
 #secondary-navigation {
@@ -309,7 +310,7 @@ p {
 }
 
 .home #header {
-    background: transparent !important;
+    background: transparent; /* !important; */
     padding: 10px 8px;
 }
 
@@ -627,7 +628,7 @@ p {
     max-width: 85%;
     margin: 0 auto;
     z-index: 2;
-    padding: 0 5%;
+    padding: 175px 5% 0 5%;
 }
 
 .carousel {
@@ -1320,8 +1321,8 @@ body.home #header,
 body.home div#header,
 html body.home .main-head-wrap,
 html body.home #header {
-    background: transparent !important;
-    background-color: transparent !important;
+    background: transparent; /* !important; */
+    background-color: transparent; /* !important; */
 }
 
 /* Force homepage navigation text to be white */
@@ -1340,4 +1341,9 @@ body.home #logo img {
 /* Red alert bar should stay red */
 body.home .top-header {
     background: var(--red-accent) !important;
+}
+
+#header.header-scrolled {
+    background: black !important;
+    transition: all 0.3s ease;
 }

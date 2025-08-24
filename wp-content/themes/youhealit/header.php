@@ -107,3 +107,15 @@ home_url(), has_custom_logo(), the_custom_logo(), wp_nav_menu()
         </div>
     </div>
 </header>
+<script>
+function changeHeaderBG(){
+    if(window.scrollY >= 35){
+        console.log('greater than 35');
+        document.getElementById('header').classList.add('header-scrolled');
+    } else {
+        console.log('less than 35');
+        document.getElementById('header').classList.remove('header-scrolled');
+    }
+}
+document.addEventListener('scroll', changeHeaderBG);
+</script>   
